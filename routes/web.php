@@ -17,9 +17,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::prefix('manage')->group(function () {
+Route::prefix('manage')->middleware('role:superadministrator|administrator|staff')->group(function () {
+
     Route::get('/','ManageController@index' );
     Route::get('/dashboard', 'ManageController@dashboard')->name('manage.dashboard');
+
+
+
+    Route::resource('/contacts', 'ContactController');
+
+    Route::resource('/users', 'UserController');
+
+    Route::get('/jobs', 'JobsController@index')->name('manage.jobs');
+
 
 });
 
