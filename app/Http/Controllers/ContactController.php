@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Contacts;
+use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ContactController extends Controller
 {
@@ -30,21 +32,12 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param ContactRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request): Response
     {
-//        $this->validate($request,[
-//            'contact_name' => 'required|max255',
-//            'email' => 'required|email',
-//            'phone' => 'required|max255',
-//            'instruction' => 'max255',
-//            'address_address' => 'max255',
-//            'address_latitude' => 'max255',
-//            'address_longitude' => 'max255',
-//            'address' => 'max255',
-//        ]);
         $contacts = new Contacts();
         $contacts->name = $request->name;
         $contacts->email = $request->email;
@@ -55,6 +48,7 @@ class ContactController extends Controller
         $contacts->address_longitude = $request->address_longitude;
 
         if ($contacts->save()){
+
             return redirect()->route('contacts.show', $contacts->id);
         }else {
             session::flash('Fuck');
