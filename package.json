@@ -25,6 +25,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "font-awesome": "^5.9.0"
+        "font-awesome": "^4.7.0"
     }
 }
