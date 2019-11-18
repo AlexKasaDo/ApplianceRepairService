@@ -14,13 +14,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'asc')->pagiganate(10);
+        $users = User::orderBy('id', 'asc')->paginate(10);
         return view('manage.users.index')->withUsers($users);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     *g
      * @return \Illuminate\Http\Response
      */
     public function create()

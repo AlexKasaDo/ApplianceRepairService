@@ -37,4 +37,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Contacts::class, 'user_id', 'id');
     }
+    public function event(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Event::class, 'staff_jobs', 'staff_id', 'event_id');
+    }
 }
