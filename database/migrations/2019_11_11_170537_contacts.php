@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class Contacts extends Migration
 {
     /**
@@ -15,18 +13,18 @@ class Contacts extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('name');
             $table->string('phone');
             $table->string('email');
-            $table->string('instruction');
-            $table->string('address_address')->nullable();
-            $table->double('address_latitude')->nullable();
-            $table->double('address_longitude')->nullable();
+            $table->text('instruction')->nullable();
+            $table->string('address_address');
+            $table->double('address_latitude');
+            $table->double('address_longitude');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -37,4 +35,3 @@ class Contacts extends Migration
         Schema::dropIfExists('contacts');
     }
 }
-
