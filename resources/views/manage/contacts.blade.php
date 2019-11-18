@@ -57,26 +57,18 @@
                         </tr>
                         </thead>
                         <tbody>
+                            @foreach($contacts as $contact)
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>777555664423</td>
+                            <th scope="row">{{$contact->id}}</th>
+                            <td><a href="{{Route('contacts.show', $contact->id)}}">{{$contact->name}}</a></td>
+                            <td>{{$contact->address_address}}</td>
+                            <td>{{$contact->phone .' / '. $contact->email }}</td>
+
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>380671177855</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>777555664423</td>
-                        </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    {{ $contacts->links() }}
 
 
 

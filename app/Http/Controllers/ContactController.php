@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contacts;
 use App\Http\Requests\ContactRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -16,7 +17,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('manage.contacts');
+        $contacts = Contacts::orderBy('id', 'asc')->paginate(10);
+        return view('manage.contacts')->withContacts($contacts);
     }
 
     /**
@@ -36,7 +38,7 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ContactRequest $request): Response
+    public function store(ContactRequest $request)
     {
         $contacts = new Contacts();
         $contacts->name = $request->name;
@@ -46,16 +48,12 @@ class ContactController extends Controller
         $contacts->address_address = $request->address_address;
         $contacts->address_latitude = $request->address_latitude;
         $contacts->address_longitude = $request->address_longitude;
-
         if ($contacts->save()){
-
             return redirect()->route('contacts.show', $contacts->id);
         }else {
-            session::flash('Fuck');
             return redirect()->route('contacts.create');
         }
     }
-
     /**
      * Display the specified resource.
      *
@@ -64,8 +62,8 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-
-        return view("manage.contact.show");
+        $contacts = Contacts::findOrFail($id);
+        return view("manage.contact.show")->withContacts($contacts);
     }
 
     /**
@@ -74,9 +72,10 @@ class ContactController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contacts $contacts)
+    public function edit($id)
     {
-        //
+        $contacts = Contacts::findOrFail($id);
+        return view("manage.contact.edit")->withContacts($contacts);
     }
 
     /**
@@ -86,9 +85,25 @@ class ContactController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contacts $contacts)
+    public function update(Request $request, $id)
     {
-        //
+        $contacts = Contacts::findOrFail($id);
+        $contacts->name = $request->name;
+        $contacts->email = $request->email;
+        $contacts->phone = $request->phone;
+        $contacts->instruction = $request->instruction;
+        $contacts->address_address = $request->address_address;
+        $contacts->address_latitude = $request->address_latitude;
+        $contacts->address_longitude = $request->address_longitude;
+
+        if ($contacts->update()){
+
+            return redirect()->route('contacts.show', $id);
+        }else {
+            session::flash('Fuck');
+            return redirect()->route('contacts.edit', $id);
+        }
+
     }
 
     /**
