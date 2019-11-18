@@ -23,4 +23,9 @@ class Contacts extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id' );
     }
+
+    public function job(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Job::class, 'contact_id', 'id');
+    }
 }
