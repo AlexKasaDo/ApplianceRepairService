@@ -1,40 +1,25 @@
 <?php
 namespace App;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laratrust\Traits\LaratrustUserTrait;
-class User extends Authenticatable
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+class Contacts extends Model
 {
-    use Notifiable;
-    use LaratrustUserTrait;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'phone',
+        'email',
+        'instruction',
+        'address_address',
+        'address_latitude',
+        'address_longitude',
+        'address_longitude',
     ];
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-    public function contact(): HasMany
+    public function userAdded(): BelongsTo
     {
-        return $this->hasMany(Contacts::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id' );
+    }
+    public function job(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Job::class, 'contact_id', 'id');
     }
 }
