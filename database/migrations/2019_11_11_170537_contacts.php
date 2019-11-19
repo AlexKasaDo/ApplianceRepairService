@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class Contacts extends Migration
 {
     /**
@@ -27,7 +25,6 @@ class Contacts extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -38,4 +35,3 @@ class Contacts extends Migration
         Schema::dropIfExists('contacts');
     }
 }
-

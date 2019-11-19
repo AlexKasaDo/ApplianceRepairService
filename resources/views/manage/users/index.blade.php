@@ -4,8 +4,11 @@
     <div class="row m-5">
         <div class="columns">
             <h1 class="title">Manage Users</h1>
+
             <a href="{{route('users.create')}}" class="btn-secondary btn-lg"> Create New User</a>
         </div>
+
+
 
         <table class="table">
             <thead class="thead-dark">
