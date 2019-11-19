@@ -28,7 +28,7 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|staff
 
     Route::resource('/users', 'UserController');
 
-    Route::get('/jobs', 'JobsController@index')->name('manage.jobs');
+    Route::resource('/jobs', 'JobsController');
 
 
 });

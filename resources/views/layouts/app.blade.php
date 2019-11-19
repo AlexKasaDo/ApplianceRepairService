@@ -25,10 +25,12 @@
     <div class="d-flex" id="wrapper">
 
 
-    <!-- Page Content -->
+        <!-- Page Content -->
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -37,17 +39,18 @@
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <!-- Authentication Links -->
                         @guest
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                        @endif
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -61,21 +64,23 @@
                                                                  document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
-                            @endguest
+                        @endguest
                     </ul>
                 </div>
             </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <main class="py-4">
+                @yield('content')
+            </main>
+        </div>
+        <!-- Menu Toggle Script -->
     </div>
-    <!-- Menu Toggle Script -->
-
+</div>
 </body>
 </html>
