@@ -31,15 +31,7 @@
 
                     <dt class="col-sm-3">Date of Creating</dt>
                     <dd class="col-sm-9">{{$contacts->created_at}}</dd>
-                </dl>
-
-
-
-
-
-
-
-
+            </div>
         </div>
     </div>
 @endsection
