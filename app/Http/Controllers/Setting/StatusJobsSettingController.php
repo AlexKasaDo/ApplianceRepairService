@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Setting;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StatusJobsRequest;
 use App\StatusJob;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class StatusJobsSettingController extends Controller
 {
@@ -15,35 +17,45 @@ class StatusJobsSettingController extends Controller
      */
     public function index()
     {
-        $status = StatusJob::orderBy('id', 'asc')->paginate(10);
-        return view('manage.setting.statusJobs.index',['status' => $status]);
+        $status = StatusJob::orderBy('id',
+                                     'asc')->paginate(10);
+        return view('manage.setting.statusJobs.index',
+                    ['status' => $status]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('manage.setting.statusJobs.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StatusJobsRequest $request
+     *
+     * @return void
      */
-    public function store(Request $request)
+    public function store(StatusJobsRequest $request)
     {
-        //
+        $status = new StatusJob();
+        $status->name = $request->name;
+        if ($status->save()){
+            return redirect()->route('status-jobs.index');
+        } else {
+            return redirect()->route('status-jobs.create');
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,7 +66,8 @@ class StatusJobsSettingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -65,8 +78,9 @@ class StatusJobsSettingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -77,7 +91,8 @@ class StatusJobsSettingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

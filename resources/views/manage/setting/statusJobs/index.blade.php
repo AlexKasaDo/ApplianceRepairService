@@ -4,7 +4,9 @@
     <div class="container-fluid list-page-row p-4">
         <div class="columns">
             <h1 class="title">Manage Status Jobs</h1>
-            <a href="#" class="btn-secondary btn-lg"> Create New Status</a>
+            <a href="{{ route('status-jobs.create') }}" class="btn-secondary btn-lg">
+                Create New Status
+            </a>
         </div>
     </div>
     <table class="table">
@@ -28,4 +30,7 @@
         </tbody>
     </table>
     {{ $status->links() }}
+
+
+
 @endsection
