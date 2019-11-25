@@ -30,7 +30,13 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|staff
 
     Route::resource('/jobs', 'JobsController');
 
+    Route::prefix('setting')->namespace('Setting')->middleware('role:superadministrator')->group(function (){
+        Route::resource('status-jobs', 'StatusJobsSettingController');
+        Route::resource('services', 'ServiceController');
+    });
+
 
 });
+
 
 Route::get('/home', 'HomeController@index')->name('home');
