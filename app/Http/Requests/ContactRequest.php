@@ -58,4 +58,12 @@ class ContactRequest extends FormRequest
             ],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'phone.regex' => 'The phone number must be in the format (XXX)XXX-XXXX',
+        ];
+    }
+
 }
