@@ -70,22 +70,29 @@ class StatusJobsSettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id): View
     {
-        //
+        $status = StatusJob::find($id);
+        return \view('manage.setting.statusJobs.edit', ['status' => $status]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
+     * @param StatusJobsRequest $request
+     * @param int               $id
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(StatusJobsRequest $request, $id)
     {
-        //
+        $stat = StatusJob::find($id);
+        $stat->name = $request->name;
+        if ($stat->save()){
+            return redirect()->route('status-jobs.index');
+        } else {
+            return redirect()->route('status-jobs.create');
+        }
     }
 
     /**

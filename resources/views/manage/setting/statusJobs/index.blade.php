@@ -12,7 +12,7 @@
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Id</th>
+
             <th scope="col">Name</th>
             <th scope="col">Date Created</th>
             <th scope="col"></th>
@@ -21,10 +21,9 @@
         <tbody>
         @foreach($status as $stat)
             <tr>
-                <th scope="row">{{$stat->id}}</th>
                 <td>{{$stat->name}}</td>
                 <td>{{$stat->created_at->toFormattedDateString()}}</td>
-                <td><a class="btn btn-outline-dark" href="#" role="button">Edit</a></td>
+                <td><a class="btn btn-outline-dark" href="status-jobs/{{$stat->id}}/edit" role="button">Edit</a></td>
             </tr>
         @endforeach
         </tbody>
