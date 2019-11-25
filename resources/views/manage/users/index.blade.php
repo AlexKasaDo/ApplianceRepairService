@@ -24,7 +24,7 @@
             @foreach($users as $user)
                 <tr>
                     <th scope="row">{{$user->id}}</th>
-                    <td>{{$user->name}}</td>
+                    <td> <a href="{{Route('users.show', $user->id)}}">{{$user->name}}</a></td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->created_at->toFormattedDateString()}}</td>
                     <td><a class="btn btn-outline-dark" href="{{Route('users.edit', $user->id)}}" role="button">Edit</a></td>

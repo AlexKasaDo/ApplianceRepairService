@@ -44,6 +44,7 @@ class ContactController extends Controller
         $contacts->name = $request->name;
         $contacts->email = $request->email;
         $contacts->phone = $request->phone;
+        $contacts->user_id = $request->user_id;
         $contacts->instruction = $request->instruction;
         $contacts->address_address = $request->address_address;
         $contacts->address_latitude = $request->address_latitude;
@@ -91,6 +92,7 @@ class ContactController extends Controller
         $contacts->name = $request->name;
         $contacts->email = $request->email;
         $contacts->phone = $request->phone;
+        $contacts->user_id = $request->user_id;
         $contacts->instruction = $request->instruction;
         $contacts->address_address = $request->address_address;
         $contacts->address_latitude = $request->address_latitude;
