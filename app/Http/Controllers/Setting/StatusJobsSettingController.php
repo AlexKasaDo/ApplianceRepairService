@@ -17,8 +17,7 @@ class StatusJobsSettingController extends Controller
      */
     public function index()
     {
-        $status = StatusJob::orderBy('id',
-                                     'asc')->paginate(10);
+        $status = StatusJob::orderBy('id', 'asc')->paginate(10);
         return view('manage.setting.statusJobs.index',
                     ['status' => $status]);
     }

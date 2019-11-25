@@ -32,6 +32,7 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|staff
 
     Route::prefix('setting')->namespace('Setting')->middleware('role:superadministrator')->group(function (){
         Route::resource('status-jobs', 'StatusJobsSettingController');
+        Route::resource('services', 'ServiceController');
     });
 
 

@@ -66,6 +66,9 @@
                                     <a class="dropdown-item" href="{{ route('status-jobs.index') }}">
                                         Status Jobs
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('services.index') }}">
+                                        Service
+                                    </a>
                                 </div>
                             </li>
                             @endrole
