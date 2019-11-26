@@ -4,11 +4,14 @@
     <div class="container-fluid list-page-row p-4">
         <div class="columns">
             <h1 class="title">Manage Service</h1>
+        </div>
+    </div>
+        <div class="list-page-row p-4">
             <a href="{{ route('services.create') }}" class="btn-secondary btn-lg">
                 Create New Service
             </a>
         </div>
-    </div>
+
     <div class="container-fluid list-page-row p-4">
         <div class="alert alert-success">
             <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
