@@ -59,6 +59,7 @@ class LaratrustSeeder extends Seeder
                 'name' => ucwords(str_replace('_', ' ', $key)),
                 'username' => ucwords(str_replace('_', ' ', $key)),
                 'email' => $key.'@app.com',
+                'status'=>'1',
                 'password' => bcrypt('password')
             ]);
 

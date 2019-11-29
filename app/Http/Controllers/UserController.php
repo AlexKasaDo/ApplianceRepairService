@@ -60,6 +60,7 @@ class UserController extends Controller
         $user = new User();
         $user->name =$request->name;
         $user->username =$request->username;
+        $user->status =$request->status;
         $user->email =$request->email;
         $user->address =$request->address;
         $user->phone =$request->phone;
@@ -139,12 +140,12 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name =$request->name;
         $user->username =$request->username;
+        $user->status =$request->status;
         $user->email =$request->email;
         $user->address =$request->address;
         $user->phone =$request->phone;
         $user->note =$request->note;
         $user->path =$request->path;
-        $user->password = Hash::make($password);
 
         $user->update();
         $user->syncRoles(explode(',', $request->roles));
@@ -158,6 +159,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function changePassword($id)
+    {
+
+        $user = User::all();
+        return view("manage.users.changePassword")->withUser($user);
+    }
+
     public function destroy($id)
     {
         //

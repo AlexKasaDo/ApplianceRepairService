@@ -50,8 +50,22 @@
                     </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="password" class="col-form-label">{{ __('Address') }}</label>
-                    <input id="password-confirm" type="text" class="form-control" name="password" placeholder="Address" required >
+                    <label for="address" class="col-form-label">{{ __('Address') }}</label>
+                    <input id="address" type="text" class="form-control" name="password" placeholder="Address" required >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class=" control-label">Login Allowed</label>
+                <div class="col-md-12">
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="status" id="status_true">
+                        Yes
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="false" checked="checked" name="status" id="status_false">
+                        No
+                    </label>
                 </div>
             </div>
 
@@ -76,12 +90,17 @@
             </div>
 
             <div class="form-group">
-                <label for="password" class="col-form-label">{{ __('Note') }}</label>
+                <label for="note" class="col-form-label">{{ __('Note') }}</label>
                 <textarea id="note" class="form-control" name="note" placeholder="write some text here"  ></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit"   class="btn btn-primary">Create</button>
         </form>
     </div>
 
+    <div id="app"> @{{ message }}</div>
+
+
 @endsection
+
+

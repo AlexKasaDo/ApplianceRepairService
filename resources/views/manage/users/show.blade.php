@@ -20,6 +20,14 @@
                 <dt class="col-sm-3">Login</dt>
                 <dd class="col-sm-9">{{$user->username }} </dd>
 
+                <dt class="col-sm-3">Status</dt>
+                @if($user->status == 1)
+                    <dd class="col-sm-9">Active</dd>
+                @else
+                    <dd class="col-sm-9">Inactive </dd>
+                @endif
+
+
                 <dt class="col-sm-3">Phone</dt>
                 <dd class="col-sm-9">{{$user->phone}}</dd>
 
