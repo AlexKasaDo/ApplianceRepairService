@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="container-fluid list-page-row p-4">
-        <h2>New Service</h2>
-        <form class="form-group" action="{{ route('services.store') }}" method="post">
+        <form action="/manage/setting/services/{{$service->id}}" method="post">
             @csrf
+            @method('PUT')
+
             <div class="card mb-3">
                 <div class="card-header"><b>Service Information</b></div>
                 <div class="card-body ">
@@ -12,7 +13,7 @@
                         <label for="name" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-6">
                             <input id="name" class="form-control @error('name') is-invalid @enderror" type="text"
-                                   name="name" value="{{old('name')}}" required>
+                                   name="name" value="{{ old('name') ? old('name') : $service->name }}" required>
                         </div>
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -25,7 +26,7 @@
                         <div class="col-6">
                             <textarea id="description" class="form-control @error('description') is-invalid @enderror"
                                       name="description" rows="5"
-                                      required>{{ old('description')}}</textarea>
+                                      required>{{ old('description') ? old('description') : $service->description}}</textarea>
                         </div>
                         @error('description')
                         <span class="invalid-feedback" role="alert">
@@ -38,8 +39,12 @@
                         <div class="col-6">
                             <select class="form-control @error('status') is-invalid @enderror" name="status"
                                     id="status">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                                <option value="1" @if($service->is_active === 1 || old('status') === 1) selected @endif>
+                                    Active
+                                </option>
+                                <option value="0" @if($service->is_active === 0 || old('status') === 0) selected @endif>
+                                    Inactive
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -51,7 +56,6 @@
                     </div>
                 </div>
             </div>
-
         </form>
     </div>
 @endsection

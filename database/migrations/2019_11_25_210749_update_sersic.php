@@ -15,10 +15,6 @@ class UpdateSersic extends Migration
     {
         Schema::table('services', function (Blueprint $table){
             $table->text('description')->nullable();
-            $table->integer('default_appointment_length')->default(0);
-            $table->string('typical_cost', 255)->nullable();
-            $table->string('background_color', 255);
-            $table->string('text_color', 255);
         });
     }
 

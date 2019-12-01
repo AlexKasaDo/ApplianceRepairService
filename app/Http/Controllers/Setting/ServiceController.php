@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Setting;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceCreateRequest;
 use App\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 
@@ -36,12 +39,21 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ServiceCreateRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ServiceCreateRequest $request)
     {
-        dd($request->all());
+        $serv = new Service();
+        $serv->name = $request->name;
+        $serv->description = $request->description;
+        $serv->is_active = $request->status;
+        if ($serv->save()){
+            return redirect()->route('services.index');
+        } else {
+            return redirect()->route('services.create');
+        }
     }
 
     /**
@@ -59,11 +71,13 @@ class ServiceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Contracts\View\Factory|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        //
+        $serv = Service::find($id);
+        return \view('manage.setting.service.edit', ['service' => $serv]);
     }
 
     /**
@@ -71,11 +85,32 @@ class ServiceController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        Validator::make($request->all(), [
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('services')->ignore($id),
+            ],
+            'description' => 'required|string',
+            'status' => 'required|boolean',
+        ])->validated();
+
+
+        $serv = Service::find($id);
+        $serv->name = $request->name;
+        $serv->description = $request->description;
+        $serv->is_active = $request->status;
+        if ($serv->save()){
+            return redirect()->route('services.index');
+        } else {
+            return redirect()->route('services.create');
+        }
+
     }
 
     /**
