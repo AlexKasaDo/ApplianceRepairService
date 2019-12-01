@@ -24,9 +24,12 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|staff
 
 
 
+
     Route::resource('/contacts', 'ContactController');
 
     Route::resource('/users', 'UserController');
+
+    Route::get('change', 'UserController@changePassword')->name('change.password');
 
     Route::resource('/jobs', 'JobsController');
 

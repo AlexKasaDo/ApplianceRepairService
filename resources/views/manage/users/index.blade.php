@@ -16,6 +16,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
+                <th scope="col">Status</th>
                 <th scope="col">Date Created</th>
                 <th scope="col">Action</th>
             </tr>
@@ -24,8 +25,14 @@
             @foreach($users as $user)
                 <tr>
                     <th scope="row">{{$user->id}}</th>
-                    <td>{{$user->name}}</td>
+                    <td> <a href="{{Route('users.show', $user->id)}}">{{$user->name}}</a></td>
                     <td>{{$user->email}}</td>
+                    <td>@if ($user->status == 1)
+                        Active
+                        @elseif($user->status == 0)
+                            Inactive
+                        @endif
+                    </td>
                     <td>{{$user->created_at->toFormattedDateString()}}</td>
                     <td><a class="btn btn-outline-dark" href="{{Route('users.edit', $user->id)}}" role="button">Edit</a></td>
                 </tr>

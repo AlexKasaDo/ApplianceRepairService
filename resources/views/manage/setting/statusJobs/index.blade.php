@@ -1,14 +1,18 @@
 @extends('layouts.manage')
 
 @section('content')
-    <div class="container-fluid list-page-row p-4">
+    <div class="container-fluid  list-page-row p-4">
         <div class="columns">
             <h1 class="title">Manage Status Jobs</h1>
+        </div>
+    </div>
+        <div class="list-page-row p-4">
             <a href="{{ route('status-jobs.create') }}" class="btn-secondary btn-lg">
                 Create New Status
             </a>
         </div>
-    </div>
+
+    <div class="container-fluid  list-page-row p-4">
     <table class="table">
         <thead class="thead-dark">
         <tr>
@@ -30,6 +34,6 @@
     </table>
     {{ $status->links() }}
 
-
+    </div>
 
 @endsection
