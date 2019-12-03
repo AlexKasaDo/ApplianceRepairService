@@ -8,6 +8,10 @@ use App\Job;
 use App\JobHistory;
 use App\Service;
 use App\StatusJob;
+use App\EventType;
+use App\Role;
+use App\User;
+use App\Event;
 use Facade\Ignition\Support\Packagist\Package;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -77,8 +81,18 @@ class JobsController extends Controller
      */
     public function show($id)
     {
+        $eventType = EventType::All();
+
         $job = Job::find($id);
-        return \view('manage.jobs.show', ['job' => $job]);
+
+        $role = Role::where('name','=','staff')->first();
+        $user = $role->users;
+
+
+
+        return \view('manage.jobs.show', ['job' => $job])
+            ->withEventType($eventType)
+            ->withUser($user);
     }
 
     /**

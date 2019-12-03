@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
                 $table->bigIncrements('id');
                 $table->dateTime('start_date');
                 $table->dateTime('end_date');
-                $table->text('description')->nullable();
+                $table->string('text');
                 $table->bigInteger('type_id')->unsigned()->nullable();
                 $table->timestamps();
                 $table->foreign('type_id')

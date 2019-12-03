@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('./datapicker');
 
 window.Vue = require('vue');
 

@@ -8,8 +8,6 @@
             <a href="{{route('users.create')}}" class="btn-secondary btn-lg"> Create New User</a>
         </div>
 
-
-
         <table class="table">
             <thead class="thead-dark">
             <tr>
