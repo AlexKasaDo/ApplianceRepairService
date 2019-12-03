@@ -15,11 +15,18 @@ class Job extends Model
 
     public function contact(): BelongsTo
     {
-        return $this->belongsTo(Service::class, 'contact_id', 'id');
+        return $this->belongsTo(Contacts::class, 'contact_id', 'id');
     }
 
     public function status(): BelongsTo
     {
         return $this->belongsTo(StatusJob::class,'status_id','id');
     }
+
+    public function history(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(JobHistory::class, 'job_id', 'id');
+    }
+
+
 }

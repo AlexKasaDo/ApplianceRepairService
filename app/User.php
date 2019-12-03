@@ -4,6 +4,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use JobsHistory;
 use Laratrust\Traits\LaratrustUserTrait;
 class User extends Authenticatable
 {
@@ -40,5 +41,10 @@ class User extends Authenticatable
     public function event(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Event::class, 'staff_jobs', 'staff_id', 'event_id');
+    }
+
+    public function jobHistory(): HasMany
+    {
+        return $this->hasMany(JobHistory::class, 'user_id', 'id');
     }
 }

@@ -24,9 +24,10 @@ class JobsRequest extends FormRequest
     public function rules()
     {
         return [
-            'service' => ['required', 'integer', 'exists:service,id'],
+            'service' => ['required', 'integer', 'exists:services,id'],
             'description' => ['nullable', 'string'],
             'scope' => ['required', 'string'],
+            'contact' => ['required', 'integer', 'exists:contacts,id'],
         ];
     }
 
