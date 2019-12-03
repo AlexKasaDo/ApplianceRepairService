@@ -60,19 +60,19 @@
                 <div class="card-header"><b>Who is this for?</b></div>
                 <div class="card-body ">
                     <div class="form-group row justify-content-center">
-                        <label for="service" class="col-sm-2 col-form-label">Service</label>
+                        <label for="service" class="col-sm-2 col-form-label">Contact</label>
                         <div class="col-6">
-                            <select class="form-control @error('service') is-invalid @enderror" name="service"
+                            <select class="form-control @error('contact') is-invalid @enderror" name="contact"
                                     id="service" required>
-                                <option disabled selected class="d-none">Choose a Service</option>
-                                @foreach($services as $service)
-                                    <option value="{{$service->id}}"
+                                <option disabled selected class="d-none">Choose a Contacts</option>
+                                @foreach($contacts as $contact)
+                                    <option value="{{$contact->id}}"
                                         {{
-                                        (collect(old('service'))->contains($service->id))  ? 'selected':''
-                                        }}>{{$service->name}}</option>
+                                        (collect(old('contact'))->contains($contact->id))  ? 'selected':''
+                                        }}>{{$contact->name}}</option>
                                 @endforeach
                             </select>
-                            @error('service')
+                            @error('contact')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -81,6 +81,7 @@
                     </div>
                 </div>
             </div>
+            <button type="submit" class="btn btn-primary">Create</button>
 
         </form>
     </div>
