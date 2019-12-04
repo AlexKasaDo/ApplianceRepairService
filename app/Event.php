@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ['start_date', 'end_date', 'description', 'type_id'];
+    protected $fillable = ['start_date', 'end_date', 'text', 'type_id'];
 
     public function type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

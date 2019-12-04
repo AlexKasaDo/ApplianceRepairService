@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::prefix('manage')->middleware('role:superadministrator|administrator|staff')->group(function () {
@@ -29,14 +30,21 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|staff
 
     Route::resource('/users', 'UserController');
 
-    Route::get('change', 'UserController@changePassword')->name('change.password');
+    Route::get('/change', 'UserController@changePassword')->name('change.password');
 
     Route::resource('/jobs', 'JobsController');
+
+    Route::get('/calendar', function (){
+        return view('manage.scheduler.scheduler');
+    })->name('calendar');
+
 
     Route::prefix('setting')->namespace('Setting')->middleware('role:superadministrator')->group(function (){
         Route::resource('status-jobs', 'StatusJobsSettingController');
         Route::resource('services', 'ServiceController');
     });
+
+
 
 
 });

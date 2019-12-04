@@ -59,11 +59,11 @@
                 <label class=" control-label">Login Allowed</label>
                 <div class="col-md-12">
                     <label class="radio-inline">
-                        <input type="radio" value="true" name="status" id="status_true">
+                        <input type="radio" value="1" name="status" id="status_true">
                         Yes
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" value="false" checked="checked" name="status" id="status_false">
+                        <input type="radio" value="0" checked="checked" name="status" id="status_false">
                         No
                     </label>
                 </div>

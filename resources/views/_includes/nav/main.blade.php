@@ -7,6 +7,7 @@
         <a href="{{route('manage.dashboard')}}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
         <a href="{{route('jobs.index')}}" class="list-group-item list-group-item-action bg-light">Jobs</a>
         <a href="{{route('contacts.index')}}" class="list-group-item list-group-item-action bg-light">Contacts</a>
+        <a href="{{route('calendar')}}" class="list-group-item list-group-item-action bg-light">Calendar</a>
         <a href="{{route('users.index')}}" class="list-group-item list-group-item-action bg-light">Users</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Invoices</a>
     </div>

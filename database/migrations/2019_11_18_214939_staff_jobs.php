@@ -15,9 +15,11 @@ class StaffJobs extends Migration
     {
         Schema::create('staff_jobs',function (Blueprint $table){
             $table->bigInteger('staff_id')->unsigned();
-            $table->bigInteger('event_id')->unsigned();
             $table->foreign('staff_id')->references('id')->on('users');
+
+            $table->bigInteger('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events');
+
             $table->primary(['staff_id', 'event_id']);
         });
     }
