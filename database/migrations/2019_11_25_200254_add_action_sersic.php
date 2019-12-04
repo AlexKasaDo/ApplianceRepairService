@@ -25,8 +25,6 @@ class AddActionSersic extends Migration
      */
     public function down()
     {
-        Schema::table('services', function (Blueprint $table){
-            $table->dropColumn('description');
-        });
+
     }
 }

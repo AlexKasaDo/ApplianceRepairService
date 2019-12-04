@@ -25,12 +25,6 @@ class UpdateSersic extends Migration
      */
     public function down()
     {
-        Schema::table('services', function (Blueprint $table){
-            $table->dropColumn('description');
-            $table->dropColumn('default_appointment_length');
-            $table->dropColumn('typical_cost');
-            $table->dropColumn('background_color');
-            $table->dropColumn('text_color');
-        });
+
     }
 }
