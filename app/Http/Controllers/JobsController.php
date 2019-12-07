@@ -12,11 +12,8 @@ use App\EventType;
 use App\Role;
 use App\User;
 use App\Event;
-use Facade\Ignition\Support\Packagist\Package;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\PaginationServiceProvider;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -43,7 +40,7 @@ class JobsController extends Controller
      */
     public function create()
     {
-        $services = Service::all();
+        $services = Service::where('is_active',true)->get();
         $contacts = Contacts::all();
         return \view('manage.jobs.create',
                      ['services' => $services, 'contacts' => $contacts,]);
@@ -65,7 +62,7 @@ class JobsController extends Controller
         $job->scope_of_work = $request->scope;
         $job->status_id = StatusJob::first()->id;
         if ($job->save()){
-            $this->history(Auth::id(), $job->id, 'create', 'Job')->save();
+            self::history(Auth::id(), $job->id, 'create', 'Job')->save();
             return redirect()->route('jobs.show', $job->id);
         }else {
             return redirect()->route('jobs.create');
@@ -85,10 +82,7 @@ class JobsController extends Controller
 
         $job = Job::find($id);
 
-        $role = Role::where('name','=','staff')->first();
-        $user = $role->users;
-
-
+        $user = Role::where('name','=','staff')->first()->users;
 
         return \view('manage.jobs.show', ['job' => $job])
             ->withEventType($eventType)
@@ -100,11 +94,20 @@ class JobsController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        //
+
+        $job = Job::find($id);
+        $services = Service::where('is_active', true)->get();
+        if (!$job->service->is_active){
+            $services[] = $job->service;
+        }
+
+
+        $contacts = Contacts::all();
+        return \view('manage.jobs.edit', ['job' => $job, 'services' => $services, 'contacts' => $contacts]);
     }
 
     /**
@@ -115,9 +118,20 @@ class JobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(JobsRequest $request, $id)
     {
-        //
+        $job = Job::find($id);
+        $job->service_id = $request->service;
+        $job->contact_id = $request->contact;
+        $job->description = $request->description;
+        $job->scope_of_work = $request->scope;
+        if ($job->save()){
+            self::history(Auth::id(), $job->id, 'update', 'Job')->save();
+            return redirect()->route('jobs.show', $job->id);
+        }else {
+            return redirect()->route('jobs.create');
+        }
+
     }
 
     /**
@@ -132,7 +146,7 @@ class JobsController extends Controller
         //
     }
 
-    private function history(int $userId, int $jodId, string $action, string $component): JobHistory
+    public static function history(int $userId, int $jodId, string $action, string $component): JobHistory
     {
         $history = new JobHistory();
         $history->user_id = $userId;
