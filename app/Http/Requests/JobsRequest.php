@@ -28,6 +28,7 @@ class JobsRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'scope' => ['required', 'string'],
             'contact' => ['required', 'integer', 'exists:contacts,id'],
+            'status' => ['nullable', 'string'],
         ];
     }
 

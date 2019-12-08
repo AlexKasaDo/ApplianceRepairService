@@ -28,11 +28,12 @@ class JobsController extends Controller
     {
         $status = StatusJob::all();
         foreach ($status as $stat){
-            $jobsArr[$stat->name]= Job::where('status_id', $stat->id)->paginate(1000);
+            $jobsArr[$stat->name] = Job::where('status_id',
+                                               $stat->id)->paginate(1000);
         }
 
         return view('manage.jobs.index',
-                    ['status' => $status, 'jobs' => $jobsArr ]);
+                    ['status' => $status, 'jobs' => $jobsArr]);
     }
 
     /**
@@ -40,7 +41,8 @@ class JobsController extends Controller
      */
     public function create()
     {
-        $services = Service::where('is_active',true)->get();
+        $services = Service::where('is_active',
+                                   true)->get();
         $contacts = Contacts::all();
         return \view('manage.jobs.create',
                      ['services' => $services, 'contacts' => $contacts,]);
@@ -62,9 +64,13 @@ class JobsController extends Controller
         $job->scope_of_work = $request->scope;
         $job->status_id = StatusJob::first()->id;
         if ($job->save()){
-            self::history(Auth::id(), $job->id, 'create', 'Job')->save();
-            return redirect()->route('jobs.show', $job->id);
-        }else {
+            self::history(Auth::id(),
+                          $job->id,
+                          'create',
+                          'Job')->save();
+            return redirect()->route('jobs.show',
+                                     $job->id);
+        } else {
             return redirect()->route('jobs.create');
         }
     }
@@ -82,9 +88,12 @@ class JobsController extends Controller
 
         $job = Job::find($id);
 
-        $user = Role::where('name','=','staff')->first()->users;
+        $user = Role::where('name',
+                            '=',
+                            'staff')->first()->users;
 
-        return \view('manage.jobs.show', ['job' => $job])
+        return \view('manage.jobs.show',
+                     ['job' => $job])
             ->withEventType($eventType)
             ->withUser($user);
     }
@@ -100,14 +109,16 @@ class JobsController extends Controller
     {
 
         $job = Job::find($id);
-        $services = Service::where('is_active', true)->get();
+        $services = Service::where('is_active',
+                                   true)->get();
         if (!$job->service->is_active){
             $services[] = $job->service;
         }
 
 
         $contacts = Contacts::all();
-        return \view('manage.jobs.edit', ['job' => $job, 'services' => $services, 'contacts' => $contacts]);
+        return \view('manage.jobs.edit',
+                     ['job' => $job, 'services' => $services, 'contacts' => $contacts]);
     }
 
     /**
@@ -116,22 +127,27 @@ class JobsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(JobsRequest $request, $id)
     {
+
         $job = Job::find($id);
         $job->service_id = $request->service;
         $job->contact_id = $request->contact;
         $job->description = $request->description;
         $job->scope_of_work = $request->scope;
         if ($job->save()){
-            self::history(Auth::id(), $job->id, 'update', 'Job')->save();
-            return redirect()->route('jobs.show', $job->id);
-        }else {
-            return redirect()->route('jobs.create');
+            self::history(Auth::id(),
+                          $job->id,
+                          'update',
+                          'Job')->save();
+            return redirect()->route('jobs.show',
+                                     $job->id);
+        } else {
+            return redirect()->route('jobs.show',
+                                     $job->id);
         }
-
     }
 
     /**
@@ -155,4 +171,5 @@ class JobsController extends Controller
         $history->component = $component;
         return $history;
     }
+
 }

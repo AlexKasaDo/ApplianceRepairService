@@ -105,4 +105,6 @@ class StatusJobsSettingController extends Controller
     {
         //
     }
+
+
 }
