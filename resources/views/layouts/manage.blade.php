@@ -123,5 +123,6 @@
     async defer></script>
 <script src="{{ asset('js/maps.js') }}" defer></script>
 <div id="app"></div>
+    @stack('scripts')
 </body>
 </html>
