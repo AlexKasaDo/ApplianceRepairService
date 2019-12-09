@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="container-fluid list-page-row p-4">
-        <h2>New Jobs</h2>
-        <form class="form-group" action="{{route('jobs.store')}}" method="post">
+        <h2>Edit Jobs</h2>
+        <form class="form-group" action="{{route('jobs.update', $job->id)}}" method="post">
             @csrf
+            @method('PUT')
             <div class="card mb-3">
                 <div class="card-header"><b>General Information</b></div>
                 <div class="card-body ">
@@ -17,8 +18,12 @@
                                 @foreach($services as $service)
                                     <option value="{{$service->id}}"
                                         {{
-                                        (collect(old('service'))->contains($service->id))  ? 'selected':''
-                                        }}>{{$service->name}}</option>
+                                            (collect(old('service'))->contains($service->id))  ?
+                                            'selected':
+                                            $service->id === $job->service_id ? 'selected' : ''
+                                        }}>
+                                        {{$service->name}}
+                                    </option>
                                 @endforeach
                             </select>
 
@@ -35,7 +40,7 @@
                         <div class="col-6">
                             <textarea id="description" class="form-control @error('description') is-invalid @enderror"
                                       name="description" rows="5"
-                                      placeholder="(optional)">{{ old('description')}}</textarea>
+                                      placeholder="(optional)">{{ old('description') ? old('description'): $job->description}}</textarea>
                         </div>
                         @error('description')
                         <span class="invalid-feedback" role="alert">
@@ -47,7 +52,7 @@
                         <label for="scope" class="col-sm-2 col-form-label">Scope of work</label>
                         <div class="col-6">
                                 <textarea id="scope" class="form-control @error('scope') is-invalid @enderror"
-                                          name="scope" rows="5" required>{{ old('scope')}}</textarea>
+                                          name="scope" rows="5" required>{{ old('scope') ? old('scope') : $job->scope_of_work}}</textarea>
                         </div>
                         @error('scope')
                         <span class="invalid-feedback" role="alert">
@@ -70,8 +75,10 @@
                                 @foreach($contacts as $contact)
                                     <option value="{{$contact->id}}"
                                         {{
-                                        (collect(old('contact'))->contains($contact->id))  ? 'selected':''
-                                        }}>{{$contact->name}}</option>
+                                        (collect(old('contact'))->contains($contact->id))  ?
+                                        'selected': collect($contact)->contains($job->contact_id) ? 'selected' :''}}>
+                                        {{$contact->name}}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('contact')
@@ -84,7 +91,8 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <a href="{{route('jobs.show',$job->id)}}" class="btn btn-dark">Back</a>
+            <button type="submit" class="btn btn-primary">Update</button>
 
         </form>
     </div>

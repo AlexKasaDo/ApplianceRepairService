@@ -34,6 +34,9 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|staff
 
     Route::resource('/jobs', 'JobsController');
 
+    Route::post('/jobs/note/create/{id}', 'NoteJobController@store')->name('note.create');
+    Route::delete('/jobs/note/create/{id}', 'NoteJobController@delete')->name('note.delete');
+
     Route::get('/calendar', function (){
         return view('manage.scheduler.scheduler');
     })->name('calendar');
