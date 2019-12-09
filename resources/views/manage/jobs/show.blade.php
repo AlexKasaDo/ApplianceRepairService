@@ -248,13 +248,12 @@
                     </div>
                 </form>
 
-                <ul class="list-group list-group-flush">
+                <ul id="note-list" class="list-group list-group-flush">
                     @foreach($job->notes as $h)
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="text-left col-9">
-                                    <p><small>{{$h->created_at}} </small><b>{{$h->user->name}}</b>
-                                        #{{$h->job_id}}</p>
+                                    <p><small>{{$h->created_at}} </small><b>{{$h->user->name}}</b></p>
                                     <p>{{$h->text}}</p>
                                 </div>
                                 <div class="text-right col-3">
@@ -265,7 +264,7 @@
                                                 d="M4.765 20.467l-1.328 2.443s-1.649.425-2.682 1.09l-.258-.257 1.237-1.237c.108-.109.249-.178.401-.196.084-.011.166-.048.23-.113.155-.155.155-.407 0-.562s-.407-.155-.562 0c-.065.065-.103.146-.113.23-.019.152-.088.293-.196.402l-1.237 1.237-.257-.258c.672-1.044 1.09-2.682 1.09-2.682l2.443-1.329 1.232 1.232zm18.923-18.3c.209-.246.312-.549.312-.851 0-.726-.589-1.316-1.316-1.316-.302 0-.604.103-.851.312 0 0-12.252 9.474-14.236 11.458-1.383 1.383-1.677 2.673-3.49 6.327l1.795 1.796c3.425-1.699 4.857-2.021 6.327-3.49 1.982-1.979 11.459-14.236 11.459-14.236z"/>
                                         </svg>
                                     </button>
-                                    <button class="btn delete-note" data-id="{{$h->id}}" data-url="{{route('note.delete',$h->id)}}" type="button">
+                                    <button class="btn delete-note" onclick="del()" data-id="{{$h->id}}" data-url="{{route('note.delete',$h->id)}}" type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                              width="14" height="14"
                                              viewBox="0 0 24 24"
