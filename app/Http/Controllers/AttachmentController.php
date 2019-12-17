@@ -47,9 +47,9 @@ class AttachmentController extends Controller
     public function download(int $id)
     {
         $img = ImageJob::find($id);
-        if ($img){
-            return response()->download(storage_path('app/public/'.$img->path));
-        }
+
+        return response()->download(storage_path('app/public/'.$img->path));
+
 
     }
 }
