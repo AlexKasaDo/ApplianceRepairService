@@ -254,10 +254,10 @@
                             <div class="row">
                                 <div class="text-left col-9">
                                     <p><small>{{$h->created_at}} </small><b>{{$h->user->name}}</b></p>
-                                    <p>{{$h->text}}</p>
+                                    <p class="text">{{$h->text}}</p>
                                 </div>
                                 <div class="text-right col-3">
-                                    <button class="btn update-note"  type="button">
+                                    <button class="btn update-note" onclick="update()" type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                              viewBox="0 0 24 24">
                                             <path
@@ -282,13 +282,8 @@
             </div>
 
         </div>
-        <div class="card mb-3">
-            <div class="card-header">
-                <b>Attachments</b>
-            </div>
-            <div class="card-body ">
-
-            </div>
+        <div id="attachmentsJobs">
+            <attachment-component id="{{$job->id}}" token="{{csrf_token()}}" ></attachment-component>
         </div>
         <div class="card mb-3">
             <div class="card-header">

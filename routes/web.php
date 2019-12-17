@@ -34,8 +34,13 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|staff
 
     Route::resource('/jobs', 'JobsController');
 
-    Route::post('/jobs/note/create/{id}', 'NoteJobController@store')->name('note.create');
-    Route::delete('/jobs/note/delete/{id}', 'NoteJobController@delete')->name('note.delete');
+    Route::post('/jobs/note/{id}', 'NoteJobController@store')->name('note.create');
+    Route::delete('/jobs/note/{id}', 'NoteJobController@delete')->name('note.delete');
+    Route::put('/job/note/{id}', 'NoteJobController@update')->name('note.update');
+    Route::post('/job/attachment/{id}', 'AttachmentController@store');
+    Route::get('/job/attachment/{id}', 'AttachmentController@getAttachment');
+    Route::delete('/job/attachment/{id}', 'AttachmentController@remove');
+    Route::get('/job/attachment/download/{id}', 'AttachmentController@download');
 
     Route::get('/calendar', function (){
         return view('manage.scheduler.scheduler');

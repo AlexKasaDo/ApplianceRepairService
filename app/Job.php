@@ -42,5 +42,10 @@ class Job extends Model
         return $this->hasMany(Note::class, 'job_id', 'id');
     }
 
+    public function images()
+    {
+        return $this->hasMany(ImageJob::class,'job_id','id');
+    }
+
 
 }
