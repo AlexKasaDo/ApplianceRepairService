@@ -48,8 +48,13 @@ class User extends Authenticatable
         return $this->hasMany(JobHistory::class, 'user_id', 'id');
     }
 
-    public function noteJobs()
+    public function noteJobs(): HasMany
     {
         return $this->hasMany(Note::class, 'user_id', 'id');
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(ImageJob::class,'user_id','id');
     }
 }
