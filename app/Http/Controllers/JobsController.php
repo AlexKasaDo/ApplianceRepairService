@@ -243,23 +243,23 @@ class JobsController extends Controller
         $dd = response()->json([
             "data" => $events->all()
         ]);
-        function base ($events){
-            $items = array();
-            $count = 0;
-
-            foreach ($events  as $event=>$value) {
-                echo '<pre>';
-                 echo $items[$count++] =  $value;
-
-                echo '<pre>';
-            }
-            return $items;
-        }
-
-        base($events);
-
-//          print_r(base($events));
-        exit();
+//        function base ($events){
+//            $items = array();
+//            $count = 0;
+//
+//            foreach ($events  as $event=>$value) {
+//                echo '<pre>';
+//                 echo $items[$count++] =  $value;
+//
+//                echo '<pre>';
+//            }
+//            return $items;
+//        }
+//
+//        base($events);
+//
+////          print_r(base($events));
+//        exit();
 
         function getArr(){
 

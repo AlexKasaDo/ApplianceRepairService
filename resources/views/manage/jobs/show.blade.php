@@ -84,6 +84,7 @@
 
             </div><!-------------------------------------------------card-body  END ----------------------------------------->
         </div>
+<<<<<<< HEAD
         <div class="card mb-3">
             <div class="card-header">
                 <div class="row">
@@ -142,15 +143,12 @@
                     @endforeach
                 </ul>
             </div>
+=======
+>>>>>>> 634a0a6c149f357be032096ab45512e1c14ac938
 
-        </div>
-        <div class="card mb-3">
-            <div class="card-header">
-                <b>Attachments</b>
-            </div>
-            <div class="card-body ">
-
-            </div>
+        <div id="attachmentsJobs">
+            <note-component token="{{csrf_token()}}"  id="{{$job->id}}"></note-component>
+            <attachment-component id="{{$job->id}}" token="{{csrf_token()}}" ></attachment-component>
         </div>
         <div class="card mb-3">
             <div class="card-header">
