@@ -69,9 +69,10 @@ function initialize() {
             }
             marker.setPosition(place.geometry.location);
             marker.setVisible(true);
-
+            google.maps.event.addDomListener(window, 'load', initialize);
         });
     }
+
 }
 
 function setLocationCoordinates(key, lat, lng) {

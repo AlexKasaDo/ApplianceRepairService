@@ -24,6 +24,13 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|staff
     Route::get('/dashboard', 'ManageController@dashboard')->name('manage.dashboard');
 
 
+    Route::get('/dispatch', 'JobsController@showDispatch')->name('dispatch');
+
+    Route::get('/calendar', 'JobsController@showCalendar')->name('calendar');
+
+    Route::get('/resource', 'JobsController@showResource')->name('resource');
+
+
 
 
     Route::resource('/contacts', 'ContactController');
@@ -37,9 +44,14 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|staff
     Route::post('/jobs/note/create/{id}', 'NoteJobController@store')->name('note.create');
     Route::delete('/jobs/note/create/{id}', 'NoteJobController@delete')->name('note.delete');
 
-    Route::get('/calendar', function (){
-        return view('manage.scheduler.scheduler');
-    })->name('calendar');
+//    Route::get('/calendar', function (){
+//        return view('manage.scheduler.scheduler');
+//    })->name('calendar');
+
+//    Route::get('/dispatch', function (){
+//        return view('manage.scheduler.dispatch');
+//    })->name('dispatch');
+
 
 
     Route::prefix('setting')->namespace('Setting')->middleware('role:superadministrator')->group(function (){
