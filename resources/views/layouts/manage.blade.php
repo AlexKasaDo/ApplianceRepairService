@@ -106,27 +106,17 @@
             </div>
         </nav>
 
+        <div id="app">@yield('content')</div>
 
-        <div id="app">
-            @yield('content')
-        </div>
 
     </div>
-<<<<<<< HEAD
 </div>
 
-=======
-    <div id="app"></div>
->>>>>>> 634a0a6c149f357be032096ab45512e1c14ac938
 <script
         src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize"
         async defer></script>
 <script src="{{ asset('js/maps.js') }}" defer></script>
 
-<<<<<<< HEAD
 @stack('scripts')
-=======
-    @stack('scripts')
->>>>>>> 634a0a6c149f357be032096ab45512e1c14ac938
 </body>
 </html>
