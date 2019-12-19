@@ -6,7 +6,7 @@
                     <b>Attachments</b>
                 </div>
                 <div class="text-right col-6">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModal">
                         Add Attachments
                     </button>
                 </div>
@@ -50,7 +50,7 @@
             <div class="modal-dialog  modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Add Attachment</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -101,7 +101,6 @@
             }
         },
         mounted() {
-            console.log(this.storage);
             this.getAttachment();
         },
         methods: {
@@ -126,7 +125,7 @@
                 this.attachment = e.target.files[0]
             },
 
-            getAttachment() {
+            async getAttachment() {
                 axios.get('/manage/job/attachment/' + this.id).then((response) => {
                     this.attaches = response.data;
                 }).catch(error => console.log(error))

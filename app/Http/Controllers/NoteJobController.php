@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class NoteJobController extends Controller
 {
+    public function show(int $id)
+    {
+
+        return response()->json(Note::with('user')->where('job_id',$id)->get(),200);
+    }
+
     public function store(Request $request, int $id)
     {
         $request->validate(['text' => 'required|string']);
@@ -25,11 +31,7 @@ class NoteJobController extends Controller
                                 'add',
                                 'note')->save();
 
-        return response()->json(['created_at' => $note->created_at,
-                                    'userName' => $note->user->name,
-                                    'text' => $note->text,
-                                    'id' => $note->id,
-                                    'url' => route('note.delete', $note->id)], 200);
+        return response()->json(Note::with('user')->where('job_id',$id)->get(), 200);
 
     }
 
