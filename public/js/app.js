@@ -2254,6 +2254,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       text: null,
       start_date: null,
+      end_date: null,
       status: null,
       assigned: null
     };
@@ -2263,7 +2264,7 @@ __webpack_require__.r(__webpack_exports__);
     addEvent: function addEvent() {
       axios.post('/api/events', {
         start_date: this.start_date,
-        end_date: this.start_date,
+        end_date: this.end_date,
         text: this.text,
         type_id: this.status,
         assigned: this.assigned
@@ -57288,7 +57289,7 @@ var render = function() {
           _c("tr", { staticClass: "mobile-labeled" }, [
             _c("td", [
               _c("div", { staticClass: "mobile-table-label visible-xs" }, [
-                _vm._v("Date")
+                _vm._v("Start time")
               ]),
               _vm._v(" "),
               _c(
@@ -57310,6 +57311,37 @@ var render = function() {
                         _vm.start_date = $$v
                       },
                       expression: "start_date"
+                    }
+                  })
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c("div", { staticClass: "mobile-table-label visible-xs" }, [
+                _vm._v("End time")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                [
+                  _c("date-picker", {
+                    attrs: {
+                      type: "datetime",
+                      "time-picker-options": {
+                        start: "08:30",
+                        step: "00:30",
+                        end: "18:30"
+                      },
+                      format: "hh:mm a"
+                    },
+                    model: {
+                      value: _vm.end_date,
+                      callback: function($$v) {
+                        _vm.end_date = $$v
+                      },
+                      expression: "end_date"
                     }
                   })
                 ],

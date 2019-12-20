@@ -15,6 +15,7 @@
             return {
                 text:null,
                 start_date: null,
+                end_date: null,
                 status:null,
                 assigned:null,
             }
@@ -28,7 +29,7 @@
             addEvent(){
                 axios.post('/api/events',{
                     start_date:this.start_date,
-                    end_date:this.start_date,
+                    end_date:this.end_date,
                     text:this.text,
                     type_id:this.status,
                     assigned:this.assigned,
@@ -71,7 +72,7 @@
         <tbody>
         <tr class="mobile-labeled">
             <td>
-                <div class="mobile-table-label visible-xs">Date</div>
+                <div class="mobile-table-label visible-xs">Start time</div>
 
                 <div>
                     <date-picker v-model="start_date" type="datetime" :time-picker-options="{
@@ -81,6 +82,22 @@
                                   }"
                                  format="hh:mm a" >
             </date-picker>
+
+                </div>
+
+
+            </td>
+            <td>
+                <div class="mobile-table-label visible-xs">End time</div>
+
+                <div>
+                    <date-picker v-model="end_date" type="datetime" :time-picker-options="{
+                                    start: '08:30',
+                                    step: '00:30',
+                                    end: '18:30',
+                                  }"
+                                 format="hh:mm a" >
+                    </date-picker>
 
                 </div>
 
@@ -124,7 +141,6 @@
             <td class="no-border" colspan="4">
                 <input type="submit" name="commit" value="Add Event"
                        class="potential_recurrable_item btn btn-sm btn-success ">
-
             </td>
         </tr>
 

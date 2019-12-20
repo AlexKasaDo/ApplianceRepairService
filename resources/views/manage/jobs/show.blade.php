@@ -73,7 +73,6 @@
 
                         <!-- DATE Picker START -->
                             <data-form :urldatauser="{{json_encode($user)}}" :urldataeventtype="{{json_encode($eventType)}}"></data-form>
-
                         <!-- DATE Picker END -->
 
                     </form>
