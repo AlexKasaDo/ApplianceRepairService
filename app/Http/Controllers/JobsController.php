@@ -240,26 +240,54 @@ class JobsController extends Controller
 
         $events = Event::with('staff')->get();
 
-        $dd = response()->json([
-            "data" => $events->all()
-        ]);
-//        function base ($events){
-//            $items = array();
-//            $count = 0;
-//
-//            foreach ($events  as $event=>$value) {
-//                echo '<pre>';
-//                 echo $items[$count++] =  $value;
-//
-//                echo '<pre>';
-//            }
-//            return $items;
-//        }
-//
-//        base($events);
-//
-////          print_r(base($events));
-//        exit();
+        function base ($events){
+            $items = array();
+            $count = 0;
+
+            foreach ($events  as $event=>$value) {
+
+
+                if ($value['staff']){
+
+                foreach ($value['staff']  as $staffItem){
+
+                    $staffId = $staffItem['id'];
+                }
+
+                    }else {
+                        $staffId = 'unassigned';
+
+
+                }
+
+                $items[$count] = [
+                    "id" => $value['id'],
+                    "type_id" => $value['type_id'],
+                    "start_date" => $value['start_date'],
+                    "end_date" => $value['end_date'],
+                    "text" => $value['text'],
+                    "created_at" => $value['created_at'],
+                    "updated_at" => $value['updated_at'],
+                    "staff" => "$staffId",
+
+                ];
+
+
+            $count++;
+
+
+            }
+
+            return $items;
+        }
+
+
+
+
+
+
+
+
 
         function getArr(){
 

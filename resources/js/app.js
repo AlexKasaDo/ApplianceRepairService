@@ -41,4 +41,5 @@ Vue.component('note-component', require('./components/NoteJobsComponent.vue').de
 
 const app = new Vue({
     el: '#attachmentsJobs',
+    el: '#app',
 });

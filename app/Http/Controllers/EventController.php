@@ -8,19 +8,16 @@ use App\Event;
 
 class EventController extends Controller
 {
-
     public function index(Request $request){
 
 
-        //$events = new Event();
+        $events =  Event::with('staff');
 
-        $events = Event::with('staff');
 
 
 
         $from = $request->from;
         $to = $request->to;
-        $staffId = $request->staff_id;
 
 
         return response()->json([
@@ -28,6 +25,9 @@ class EventController extends Controller
             where("start_date", "<", $to)->
             where("end_date", ">=", $from)->get()
         ]);
+
+
+
 
     }
 
