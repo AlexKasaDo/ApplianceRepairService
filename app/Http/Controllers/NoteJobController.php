@@ -57,6 +57,15 @@ class NoteJobController extends Controller
     {
         $request->validate(['text' => 'required|string']);
 
+        $update = Note::find($id);
+        $update->text = $request->text;
+        $update->save();
+        JobsController::history(Auth::id(),
+                                $update->job->id,
+                                'edit',
+                                'note')->save();
+        return response()->json(true, 200);
+
 
     }
 }

@@ -23,22 +23,26 @@
                 </form>
             </template>
             <ul id="note-list" class="list-group list-group-flush">
-                <li class="list-group-item" v-for="(item ,index) in  data" v-bind:key="item.id" :item="item"
+                <li class="list-group-item" v-for="(item ,index) in  data" :key="item.id"
                     :index="index">
                     <div class="row">
                         <div class="text-left col-9">
                             <p><small>{{item.created_at}}</small> by <b>{{item.user.name}} </b></p>
                             <p class="text"> {{ item.text}}  </p>
+                            <template v-if="editable == item.id">
+                                <textarea  v-model="edit = item.text" class="form-control"></textarea>
+                                <div class="form-group m-1">
+                                    <button type="button" class="btn btn-dark" @click="labelEdit(item.id)">Save</button>
+                                    <button type="button" class="btn btn-success" @click="editable=null">Cancel</button>
+                                </div>
+                            </template>
 
-
-
-                            <textarea v-if="editable == index"> sdfsdfsd f</textarea>
 
 
 
                         </div>
                         <div class="text-right col-3">
-                            <button class="btn update-note"  type="button" @click="labelEdit(index)">
+                            <button class="btn update-note"  type="button" @click="editable=item.id">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                      viewBox="0 0 24 24">
                                     <path
@@ -83,7 +87,6 @@
             async getNote() {
                  axios.get('/manage/jobs/note/'+ this.id).then((response) => {
                      this.data = response.data;
-                     console.log(response.data);
                  }).catch(error => console.log(error));
             },
 
@@ -104,8 +107,16 @@
                 }).catch(error => console.log(error));
             },
 
-            labelEdit(index){
-                this.editlable = index;
+            labelEdit(id){
+
+                let formData = new FormData();
+                formData.append('_token',this.token);
+                formData.append('text', this.edit);
+                axios.put('/manage/jobs/note/'+ id, { _token: this.token, text: this.edit }).then(response => {
+
+                    this.editable = null;
+
+                }).catch(error => console.log(error));
 
             }
 
