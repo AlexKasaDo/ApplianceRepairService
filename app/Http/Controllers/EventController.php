@@ -11,10 +11,14 @@ class EventController extends Controller
     public function index(Request $request){
 
 
-        $events = new Event();
+        $events =  Event::with('staff');
+
+
+
 
         $from = $request->from;
         $to = $request->to;
+
 
         return response()->json([
             "data" => $events->
@@ -22,18 +26,27 @@ class EventController extends Controller
             where("end_date", ">=", $from)->get()
         ]);
 
+
+
+
     }
 
     public function store(Request $request){
 
         $event = new Event();
 
+       if(isset($request->type_id)) {
+           $request->type_id;
+       }else{
+            $request->type_id=2;
+       };
 
-        $event->start_date = $request->start_date;
-        $event->end_date = $request->end_date;
+        $event->start_date =  date("Y-m-d H:i:s",strtotime($request->start_date));
+        $event->end_date = date("Y-m-d H:i:s",strtotime( $request->end_date));
         $event->text = strip_tags($request->text);
+        $event->type_id = strip_tags($request->type_id);
         $event->save();
-        $event->staff()->sync($request->id, false);
+        $event->staff()->sync($request->assigned, true);
 
         return response()->json([
             "action"=> "inserted",
@@ -47,7 +60,9 @@ class EventController extends Controller
         $event->text = strip_tags($request->text);
         $event->start_date = $request->start_date;
         $event->end_date = $request->end_date;
+        $event->type_id = strip_tags($request->type_id);
         $event->save();
+        $event->staff()->sync($request->assigned, true);
 
         return response()->json([
             "action"=> "updated"
@@ -56,7 +71,12 @@ class EventController extends Controller
 
     public function destroy($id){
         $event = Event::find($id);
+        $event->staff()->sync([]);
         $event->delete();
+
+
+
+
 
         return response()->json([
             "action"=> "deleted"

@@ -5,7 +5,8 @@
  */
 
 require('./bootstrap');
-require('./datapicker');
+//require('./public/js/maps');
+
 
 window.Vue = require('vue');
 
@@ -15,15 +16,22 @@ window.Vue = require('vue');
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
  *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Eg. ./components/DataForm.vue -> <example-component></example-component>
  */
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+Vue.component('data-form', require('./components/DataForm.vue').default);
+Vue.component('scheduler', require('./components/Scheduler.vue').default);
+Vue.component('calendar', require('./components/Calendar.vue').default);
+Vue.component('resource', require('./components/Resource.vue').default);
+
+
 Vue.component('attachment-component', require('./components/AttachmentJobsComponent.vue').default);
 Vue.component('note-component', require('./components/NoteJobsComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,4 +41,5 @@ Vue.component('note-component', require('./components/NoteJobsComponent.vue').de
 
 const app = new Vue({
     el: '#attachmentsJobs',
+    el: '#app',
 });

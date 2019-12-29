@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Arr;
 
 class JobsController extends Controller
 {
@@ -86,11 +87,13 @@ class JobsController extends Controller
     {
         $eventType = EventType::All();
 
+
         $job = Job::find($id);
 
         $user = Role::where('name',
                             '=',
                             'staff')->first()->users;
+
 
         return \view('manage.jobs.show',
                      ['job' => $job])
@@ -157,6 +160,165 @@ class JobsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function showDispatch(){
+
+        $eventType = EventType::All();
+
+
+        $events = Event::with('staff')->get();
+
+         function getArr(){
+
+            $events = Event::with('staff')->get();
+            $i = 1;
+             $event = [];
+            foreach ($events as $key => $value)
+            {
+
+                $event [$i] = 'key:'.$key.  'value:'.$value['staff'];
+
+
+                $i++;
+            }
+            return $event;
+
+        }
+
+
+        $user = Role::where('name',
+            '=',
+            'staff')->first()->users;
+
+
+        return \view('manage.scheduler.dispatch')
+            ->withEventType($eventType)
+            ->withUser($user);
+
+
+    }
+    public function showCalendar(){
+
+        $eventType = EventType::All();
+
+
+        $events = Event::with('staff')->get();
+
+        function getArr(){
+
+            $events = Event::with('staff')->get();
+            $i = 1;
+            $event = [];
+            foreach ($events as $key => $value)
+            {
+
+                $event [$i] = 'key:'.$key.  'value:'.$value['staff'];
+
+
+                $i++;
+            }
+            return $event;
+
+        }
+
+
+        $user = Role::where('name',
+            '=',
+            'staff')->first()->users;
+
+
+        return \view('manage.scheduler.scheduler')
+            ->withEventType($eventType)
+            ->withUser($user);
+
+
+    }
+    public function showResource(){
+
+        $eventType = EventType::All();
+
+
+        $events = Event::with('staff')->get();
+
+        function base ($events){
+            $items = array();
+            $count = 0;
+
+            foreach ($events  as $event=>$value) {
+
+
+                if ($value['staff']){
+
+                foreach ($value['staff']  as $staffItem){
+
+                    $staffId = $staffItem['id'];
+                }
+
+                    }else {
+                        $staffId = 'unassigned';
+
+
+                }
+
+                $items[$count] = [
+                    "id" => $value['id'],
+                    "type_id" => $value['type_id'],
+                    "start_date" => $value['start_date'],
+                    "end_date" => $value['end_date'],
+                    "text" => $value['text'],
+                    "created_at" => $value['created_at'],
+                    "updated_at" => $value['updated_at'],
+                    "staff" => "$staffId",
+
+                ];
+
+
+            $count++;
+
+
+            }
+
+            return $items;
+        }
+
+
+
+
+
+
+
+
+
+        function getArr(){
+
+            $events = Event::with('staff')->get();
+            $i = 1;
+            $event = [];
+            foreach ($events as $key => $value)
+            {
+
+                $event [$i] = 'key:'.$key.  'value:'.$value['staff'];
+
+
+                $i++;
+            }
+            return $event;
+
+        }
+
+
+        $user = Role::where('name',
+            '=',
+            'staff')->first()->users;
+
+
+        return \view('manage.scheduler.resource')
+            ->withEventType($eventType)
+            ->withUser($user);
+
+
+    }
+
     public function destroy($id)
     {
         //
