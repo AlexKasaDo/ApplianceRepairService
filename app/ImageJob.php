@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImageJob extends Model
 {
-    protected $fillable = ['user_id', 'jod_id', 'description', 'path'];
+    protected $fillable = ['user_id', 'jod_id', 'description', 'path', 'type'];
 
     public function user()
     {

@@ -24,8 +24,14 @@ class AttachmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => 'nullable|string',
-            'attachment' => 'image|mimes:jpeg,jpg,png,gif,svg|required'
+            [
+                    'file'      => $request->file('attachment'),
+                    'extension' => strtolower($request->file('attachment')->getClientOriginalExtension()),
+                ],
+                [
+                    'file'          => 'required',
+                    'extension'      => 'required|in:doc,csv,xlsx,xls,docx,ppt,odt,ods,odp,jpeg,jpg,png,icon,txt,pdf,svg',
+                ]
         ];
     }
 }

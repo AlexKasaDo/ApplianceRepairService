@@ -102,9 +102,7 @@
         </ul>
     </div>
     </div>
-    @push('scripts')
-    <script src="{{asset('js/notes.js')}}"></script>
-    @endpush
+
 
 
 @endsection
