@@ -1,5 +1,5 @@
 <template>
-    <div class="card mb-3">
+    <div class="card mb-3" v-on:keyup.esc="showModal = null">
         <div class="card-header">
             <div class="row">
                 <div class="text-left col-6">
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="card-body row row-cols-1 row-cols-md-3">
-            <div class="col-1 mb-4" v-for="item in this.attaches">
+            <div class="col-1 mb-4" v-for="(item, index) in this.attaches" :key="item.id" :index="index">
                 <div class="card h-80">
                     <template v-if="other.includes(item.type)">
                         <img :src="'/images/attachment/file.svg'" class="card-img-top" alt="..." width="10"
@@ -24,8 +24,26 @@
                              height="80">
                     </template>
                     <template v-else>
-                        <img :src="'/storage/' + item.path" class="card-img-top" alt="..." width="10"
-                             height="80">
+                        <button @click="showModal=item.id">
+                            <img :src="'/storage/' + item.path" class="card-img-top" alt="..." width="10"
+                                 height="80">
+                        </button>
+                        <template v-if="showModal == item.id" >
+                            <transition name="modal">
+                                <div class="modal-mask">
+                                    <div class="modal-wrapper">
+                                        <div class="modal-container">
+                                            <img :class="'modal-body'" :src="'/storage/' + item.path"
+                                                 class="card-img-top" alt="..." >
+                                            <button type="button" class="close modal-default-button"
+                                                    @click.esc="showModal=null" >
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </transition>
+                        </template>
                     </template>
 
                     <div class="card-body p-1">
@@ -100,6 +118,7 @@
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -112,10 +131,9 @@
                 name: null,
                 attachment: [],
                 err: '',
-                docFile: ['doc','csv','xlsx','xls','docx','txt','pdf','zip','rar'],
+                docFile: ['doc', 'csv', 'xlsx', 'xls', 'docx', 'txt', 'pdf', 'zip', 'rar'],
                 other: ['ppt', 'odt', 'ods', 'odp'],
-                art: ['ico'],
-
+                showModal: null,
             }
         },
         mounted() {
@@ -136,8 +154,8 @@
                         this.name = null;
                         this.attachment = [];
                     }).catch(error => {
-                        this.err = error.response.data.errors.extension;
-                    });
+                    this.err = error.response.data.errors.extension;
+                });
                 this.err = '';
             },
             onAttachmentChange(e) {
@@ -166,5 +184,33 @@
 </script>
 
 <style scoped>
+    .modal-mask {
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .5);
+        display: table;
+
+    }
+
+    .modal-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .modal-container {
+        width: 85%;
+        margin: 0px 10em;
+    }
+
+    .modal-default-button {
+        position: fixed;
+        z-index: 9999;
+        top: 3%;
+        right: 3%;
+    }
 
 </style>

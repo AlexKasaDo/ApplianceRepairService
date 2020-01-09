@@ -16,6 +16,7 @@
         "santigarcor/laratrust": "5.2.*"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.6",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
@@ -36,6 +37,7 @@
         "psr-4": {
             "App\\": "app/"
         },
+        "classmap": [
         "classmap": [
             "database/seeds",
             "database/factories"
