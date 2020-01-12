@@ -31,6 +31,7 @@ Vue.component('resource', require('./components/Resource.vue').default);
 
 Vue.component('attachment-component', require('./components/AttachmentJobsComponent.vue').default);
 Vue.component('note-component', require('./components/NoteJobsComponent.vue').default);
+Vue.component('status-job', require('./components/StatusJobComponent').default);
 
 
 /**
@@ -40,6 +41,5 @@ Vue.component('note-component', require('./components/NoteJobsComponent.vue').de
  */
 
 const app = new Vue({
-    el: '#attachmentsJobs',
     el: '#app',
 });
