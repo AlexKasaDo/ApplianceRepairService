@@ -18,6 +18,7 @@ class CreateImageJobsTable extends Migration
             $table->bigInteger('job_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->string('path',255);
+            $table->string('type',255);
             $table->text('description');
             $table->timestamps();
             $table->foreign('job_id')->references('id')->on('jobs');
