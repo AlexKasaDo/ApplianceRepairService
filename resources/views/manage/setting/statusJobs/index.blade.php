@@ -26,7 +26,7 @@
         @foreach($status as $stat)
             <tr>
                 <td>{{$stat->name}}</td>
-                <td>{{$stat->created_at->toFormattedDateString()}}</td>
+                <td>{{$stat->created_at}}</td>
                 <td><a class="btn btn-outline-dark" href="status-jobs/{{$stat->id}}/edit" role="button">Edit</a></td>
             </tr>
         @endforeach
