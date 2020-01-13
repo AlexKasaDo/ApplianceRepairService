@@ -78374,7 +78374,6 @@ Vue.component('events-component', __webpack_require__(/*! ./components/EventsJob
 Vue.component('attachment-component', __webpack_require__(/*! ./components/AttachmentJobsComponent.vue */ "./resources/js/components/AttachmentJobsComponent.vue")["default"]);
 Vue.component('note-component', __webpack_require__(/*! ./components/NoteJobsComponent.vue */ "./resources/js/components/NoteJobsComponent.vue")["default"]);
 Vue.component('status-job', __webpack_require__(/*! ./components/StatusJobComponent */ "./resources/js/components/StatusJobComponent.vue")["default"]);
-Vue.use('VueRouter, VueAxios, axios');
 var app = new Vue({
   el: '#app'
 });
