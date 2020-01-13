@@ -4,30 +4,18 @@
     <div class="container-fluid list-page-row p-4">
         <div class="card mb-3">
             <div class="card-body ">
-                <div class="row">
-                    <div class="col-md-4 text-left">
-                        <h3>{{$job->service->name}} <small class="text-muted">#{{$job->id}}</small></h3>
-                        <p>Job for <a href="{{ route('contacts.show', $job->contact_id) }}">{{$job->contact->name}}</a>
-                        </p>
-                        <p>{{$job->contact->address_address}}</p>
 
-                        <a class="fa-link" data-toggle="collapse" href="#scope" role="button"
-                           aria-expanded="false" aria-controls="multiCollapseExample1">
-                            Scope of Work
-                        </a>
-                        <div class="collapse multi-collapse" id="scope">
-                            <p> {{$job->scope_of_work}}</p>
-                        </div>
-                        <div><span class="badge badge-primary">{{$job->status->name}}</span></div>
-                    </div>
-                    <div class="col-md-4 offset-md-4 text-right">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-secondary">Start Job</button>
-                            <button type="button" class="btn btn-secondary">On Hold</button>
-                            <button type="button" class="btn btn-secondary">Make Complete</button>
-                        </div>
-                    </div>
-                </div>
+                <status-job currentstatus="{{ $job->status_id}}" token="{{csrf_token()}}" job="{{$job->id}}"
+                            href="{{ route('contacts.show', $job->contact_id) }}" statusname="{{$job->status->name}}">
+                    <template v-slot:service>{{$job->service->name}}</template>
+                    <template v-slot:jobid>{{$job->id}}</template>
+                    <template v-slot:contactname>{{$job->contact->name}}</template>
+                    <template v-slot:address>{{$job->contact->address_address}}</template>
+                    <template v-slot:scopeofwork>{{$job->scope_of_work}}</template>
+
+                </status-job>
+
+
             </div>
             <div class="card-footer">
                 <ul class="nav nav-pills justify-content-end small">

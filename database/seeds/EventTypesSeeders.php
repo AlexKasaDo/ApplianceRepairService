@@ -21,5 +21,12 @@ class EventTypesSeeders extends Seeder
             ['name' => 'Time-Off'],
 
         ]);
+        DB::table('status_jobs')->insert([
+            ['name' => 'Unscheduled'],
+            ['name' => 'Scheduled'],
+            ['name' => 'In Progress'],
+            ['name' => 'On Hold'],
+            ['name' => 'Complete '],
+                                         ]);
     }
 }

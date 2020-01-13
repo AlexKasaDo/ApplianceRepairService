@@ -28,6 +28,7 @@ Vue.component('events-component', require('./components/EventsJobsComponent.vue'
 
 Vue.component('attachment-component', require('./components/AttachmentJobsComponent.vue').default);
 Vue.component('note-component', require('./components/NoteJobsComponent.vue').default);
+Vue.component('status-job', require('./components/StatusJobComponent').default);
 
 
 Vue.use('VueRouter, VueAxios, axios');
@@ -36,7 +37,6 @@ Vue.use('VueRouter, VueAxios, axios');
 
 
 const app = new Vue({
-    el: '#attachmentsJobs',
     el: '#app',
 
 });

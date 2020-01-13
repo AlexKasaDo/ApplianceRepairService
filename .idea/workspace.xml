@@ -2,21 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f1ce9b6-1da8-4387-9d7f-1e56beefda87" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/EventsJobsComponent.vue" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/StatusJobController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/attachment/csv.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/attachment/doc.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/attachment/docx.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/attachment/file.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/attachment/pdf.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/attachment/txt.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/attachment/xls.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/attachment/xlsx.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/attachment/zip.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/js/components/StatusJobComponent.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env.example" afterPath="$PROJECT_DIR$/.env.example" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Event.php" afterPath="$PROJECT_DIR$/app/Event.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/EventController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/EventController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/JobsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/JobsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Job.php" afterPath="$PROJECT_DIR$/app/Job.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_11_18_204943_create_events_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_11_18_204943_create_events_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_11_18_205002_create_jobs_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_11_18_205002_create_jobs_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/AttachmentController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttachmentController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/AttachmentRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/AttachmentRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/ImageJob.php" afterPath="$PROJECT_DIR$/app/ImageJob.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_12_09_211423_create_image_jobs_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_12_09_211423_create_image_jobs_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/EventTypesSeeders.php" afterPath="$PROJECT_DIR$/database/seeds/EventTypesSeeders.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/app.js" afterPath="$PROJECT_DIR$/resources/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/DataForm.vue" afterPath="$PROJECT_DIR$/resources/js/components/DataForm.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/js/components/AttachmentJobsComponent.vue" afterPath="$PROJECT_DIR$/resources/js/components/AttachmentJobsComponent.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/manage.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage/jobs/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage/jobs/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,13 +47,13 @@
         <entry file="file://$PROJECT_DIR$/resources/js/components/NoteJobsComponent.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="546">
-              <caret line="60" column="30" lean-forward="true" selection-start-line="43" selection-start-column="20" selection-end-line="60" selection-end-column="30" />
+              <caret line="60" column="30" lean-forward="false" selection-start-line="43" selection-start-column="20" selection-end-line="60" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataForm.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataForm.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/components/DataForm.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="326">
@@ -65,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EventController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="64" column="46" lean-forward="true" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+              <caret line="64" column="46" lean-forward="false" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
               <folding>
                 <element signature="e#40#58#0#PHP" expanded="true" />
               </folding>
@@ -77,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/app/Event.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="22" column="84" lean-forward="true" selection-start-line="22" selection-start-column="84" selection-end-line="22" selection-end-column="84" />
+              <caret line="22" column="84" lean-forward="false" selection-start-line="22" selection-start-column="84" selection-end-line="22" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -97,17 +109,17 @@
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+              <caret line="22" column="45" lean-forward="false" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/manage/jobs/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            <state relative-caret-position="136">
+              <caret line="44" column="14" lean-forward="false" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -212,9 +224,9 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/JobsController.php" />
         <option value="$PROJECT_DIR$/resources/js/components/NoteJobsComponent.vue" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/NoteJobController.php" />
-        <option value="$PROJECT_DIR$/resources/views/manage/jobs/show.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/EventController.php" />
         <option value="$PROJECT_DIR$/resources/js/components/DataForm.vue" />
+        <option value="$PROJECT_DIR$/resources/views/manage/jobs/show.blade.php" />
       </list>
     </option>
   </component>
@@ -679,7 +691,7 @@
       <workItem from="1575802300306" duration="983000" />
       <workItem from="1575892824484" duration="33944000" />
       <workItem from="1576191130009" duration="144188000" />
-      <workItem from="1577952650588" duration="47593000" />
+      <workItem from="1577952650588" duration="49244000" />
     </task>
     <task id="LOCAL-00001" summary="First iteration">
       <created>1575051395382</created>
@@ -720,7 +732,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="458549000" />
+    <option name="totallyTimeSpent" value="460200000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1138,7 +1150,7 @@
     <entry file="file://$PROJECT_DIR$/resources/js/components/NoteJobsComponent.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
-          <caret line="60" column="30" lean-forward="true" selection-start-line="43" selection-start-column="20" selection-end-line="60" selection-end-column="30" />
+          <caret line="60" column="30" lean-forward="false" selection-start-line="43" selection-start-column="20" selection-end-line="60" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1146,7 +1158,7 @@
     <entry file="file://$PROJECT_DIR$/app/Event.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="22" column="84" lean-forward="true" selection-start-line="22" selection-start-column="84" selection-end-line="22" selection-end-column="84" />
+          <caret line="22" column="84" lean-forward="false" selection-start-line="22" selection-start-column="84" selection-end-line="22" selection-end-column="84" />
           <folding />
         </state>
       </provider>
@@ -1162,15 +1174,7 @@
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage/jobs/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <caret line="22" column="45" lean-forward="false" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1186,7 +1190,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EventController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="64" column="46" lean-forward="true" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+          <caret line="64" column="46" lean-forward="false" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
           <folding>
             <element signature="e#40#58#0#PHP" expanded="true" />
           </folding>
@@ -1205,6 +1209,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="192" column="45" lean-forward="false" selection-start-line="192" selection-start-column="45" selection-end-line="192" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage/jobs/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="44" column="14" lean-forward="false" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
           <folding />
         </state>
       </provider>

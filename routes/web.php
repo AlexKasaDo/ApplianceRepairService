@@ -52,6 +52,8 @@ Route::prefix('manage')->middleware('role:superadministrator|administrator|staff
     Route::delete('/job/attachment/{id}', 'AttachmentController@remove');
     Route::get('/job/attachment/download/{id}', 'AttachmentController@download');
 
+    Route::put('/job/status/{id}','StatusJobController@update');
+
 //    Route::get('/calendar', function (){
 //        return view('manage.scheduler.scheduler');
 //    })->name('calendar');
