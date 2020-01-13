@@ -9,6 +9,11 @@ class Job extends Model
 {
     protected $fillable = ['service_id', 'contact_id', 'event_id', 'status_id', 'description', 'scope_of_work'];
 
+    public function event ()
+    {
+        return $this->hasMany(Event::class, 'job_id', 'id');
+    }
+
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class,

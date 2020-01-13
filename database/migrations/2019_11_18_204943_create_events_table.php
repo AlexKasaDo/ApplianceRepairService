@@ -20,6 +20,7 @@ class CreateEventsTable extends Migration
                 $table->dateTime('end_date');
                 $table->string('text');
                 $table->bigInteger('type_id')->unsigned()->nullable();
+                $table->bigInteger('job_id')->unsigned()->nullable();
                 $table->timestamps();
                 $table->foreign('type_id')
                     ->references('id')

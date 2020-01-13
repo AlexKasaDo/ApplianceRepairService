@@ -16,6 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 //Route::get('/data', 'EventController@index');
 
+
 Route::resource('events', 'EventController');
+
+//Route::get('events','EventController@getEvents');
+
