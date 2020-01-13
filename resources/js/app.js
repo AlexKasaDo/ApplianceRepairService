@@ -31,10 +31,6 @@ Vue.component('note-component', require('./components/NoteJobsComponent.vue').de
 Vue.component('status-job', require('./components/StatusJobComponent').default);
 
 
-Vue.use('VueRouter, VueAxios, axios');
-
-
-
 
 const app = new Vue({
     el: '#app',
