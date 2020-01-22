@@ -2284,6 +2284,241 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-datepicker/index.css */ "./node_modules/vue2-datepicker/index.css");
 /* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_2__);
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2295,6 +2530,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       data: [],
       seen: false,
+      editable: false,
       text: null,
       start_date: null,
       end_date: null,
@@ -2308,6 +2544,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addEvent: function addEvent() {
+      var _this = this;
+
       axios.post('/api/events', {
         start_date: this.start_date,
         end_date: this.end_date,
@@ -2315,18 +2553,22 @@ __webpack_require__.r(__webpack_exports__);
         type_id: this.status,
         assigned: this.assigned,
         job_id: this.id
+      }).then(function (response) {
+        _this.data = response.data;
+        _this.seen = false;
+      })["catch"](function (error) {
+        return console.log(error);
       });
-      alert('Successful Adding event');
     },
     getEvent: function getEvent() {
-      var _this = this;
+      var _this2 = this;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function getEvent$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               axios.get('/api/events/' + this.id).then(function (response) {
-                _this.data = response.data;
+                _this2.data = response.data;
               })["catch"](function (error) {
                 return console.log(error);
               });
@@ -2337,21 +2579,34 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       }, null, this);
-    }
-  } //        methods:{
-  //            update: function () {
-  //                console.log(this.urldata);
-  //
-  //            }
-  ////            update: function () {
-  ////                axios.get('/manage/jobs/').then((response) => {
-  ////                    console.log(response)
-  ////                    this.urldatauser = response.data
-  ////                })
-  ////
-  ////            }
-  //        }
+    },
+    labelEdit: function labelEdit(id) {
+      var _this3 = this;
 
+      axios.post('/api/events/' + id, {
+        start_date: this.start_date,
+        end_date: this.end_date,
+        text: this.text,
+        type_id: this.status,
+        assigned: this.assigned,
+        job_id: this.id
+      }).then(function (response) {
+        _this3.data = response.data;
+        _this3.editable = false;
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
+    removeEvent: function removeEvent(id, index) {
+      var _this4 = this;
+
+      axios["delete"]('/api/events/' + id).then(function (res) {
+        _this4.data.splice(index, 1);
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -7622,7 +7877,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal-mask[data-v-2ac2736e] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n}\n.modal-wrapper[data-v-2ac2736e] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-2ac2736e] {\n    width: 85%;\n    margin: 0px 10em;\n}\n.modal-default-button[data-v-2ac2736e] {\n    position: fixed;\n    z-index: 9999;\n    top: 3%;\n    right: 3%;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-mask[data-v-2ac2736e] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, .5);\n    display: table;\n}\n.modal-wrapper[data-v-2ac2736e] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-2ac2736e] {\n    width: 85%;\n    margin: 0px 10em;\n}\n.modal-default-button[data-v-2ac2736e] {\n    position: fixed;\n    z-index: 9999;\n    top: 3%;\n    right: 3%;\n}\n", ""]);
 
 // exports
 
@@ -58012,116 +58267,434 @@ var render = function() {
                     ])
                   ]
                 )
-              : _vm._e(),
-            _vm._v(" "),
-            _c("table", { staticClass: "table new-task-table table-block" }, [
-              _c("tbody", [
-                _c(
-                  "ul",
-                  { staticClass: "list-group list-group-flush" },
-                  _vm._l(_vm.data, function(item) {
-                    return _c(
-                      "li",
-                      { key: item.id, staticClass: "list-group-item" },
-                      [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "text-left col-2" }, [
-                            _vm._m(2, true),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "text" }, [
-                              _vm._v(" " + _vm._s(item.id) + "  ")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "text-left col-4" }, [
-                            _vm._m(3, true),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "text" }, [
-                              _vm._v(
-                                " " +
-                                  _vm._s(item.start_date) +
-                                  " " +
-                                  _vm._s(item.end_date) +
-                                  " "
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "text-left col-2" }, [
-                            _vm._m(4, true),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "text" }, [
-                              _vm._v(" " + _vm._s(item.text) + "  ")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _vm._m(5, true),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "text-right col-2" }, [
+              : _vm._e()
+          ]
+        ),
+        _vm._v(" "),
+        _c("table", { staticClass: "table new-task-table table-block" }, [
+          _c("tbody", [
+            _c(
+              "ul",
+              { staticClass: "list-group list-group-flush" },
+              _vm._l(_vm.data, function(item, index) {
+                return _c(
+                  "li",
+                  {
+                    key: item.id,
+                    staticClass: "list-group-item",
+                    attrs: { index: index }
+                  },
+                  [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "text-left col-2" }, [
+                        _vm._m(2, true),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text" }, [
+                          _vm._v(" " + _vm._s(item.id) + "  ")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-left col-4" }, [
+                        _vm._m(3, true),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text" }, [
+                          _vm._v(
+                            " " +
+                              _vm._s(item.start_date) +
+                              " " +
+                              _vm._s(item.end_date) +
+                              " "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-left col-2" }, [
+                        _vm._m(4, true),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text" }, [
+                          _vm._v(" " + _vm._s(item.text) + "  ")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(5, true),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "text-right col-2" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn update-note",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.editable = item.id
+                              }
+                            }
+                          },
+                          [
                             _c(
-                              "button",
+                              "svg",
                               {
-                                staticClass: "btn update-note",
-                                attrs: { type: "button" }
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  width: "14",
+                                  height: "14",
+                                  viewBox: "0 0 24 24"
+                                }
                               },
                               [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M4.765 20.467l-1.328 2.443s-1.649.425-2.682 1.09l-.258-.257 1.237-1.237c.108-.109.249-.178.401-.196.084-.011.166-.048.23-.113.155-.155.155-.407 0-.562s-.407-.155-.562 0c-.065.065-.103.146-.113.23-.019.152-.088.293-.196.402l-1.237 1.237-.257-.258c.672-1.044 1.09-2.682 1.09-2.682l2.443-1.329 1.232 1.232zm18.923-18.3c.209-.246.312-.549.312-.851 0-.726-.589-1.316-1.316-1.316-.302 0-.604.103-.851.312 0 0-12.252 9.474-14.236 11.458-1.383 1.383-1.677 2.673-3.49 6.327l1.795 1.796c3.425-1.699 4.857-2.021 6.327-3.49 1.982-1.979 11.459-14.236 11.459-14.236z"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn",
+                            attrs: { "data-toggle": "modal" },
+                            on: {
+                              click: function($event) {
+                                return _vm.removeEvent(item.id, index)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticStyle: { fill: "#000000" },
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  x: "0px",
+                                  y: "0px",
+                                  width: "14",
+                                  height: "14",
+                                  viewBox: "0 0 24 24"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M 10 2 L 9 3 L 3 3 L 3 5 L 21 5 L 21 3 L 15 3 L 14 2 L 10 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      {
+                        staticClass: "form-group",
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.labelEdit($event)
+                          }
+                        }
+                      },
+                      [
+                        _vm.editable == item.id
+                          ? _c("div", { staticClass: "row" }, [
+                              _c("td", [
                                 _c(
-                                  "svg",
+                                  "div",
                                   {
+                                    staticClass: "mobile-table-label visible-xs"
+                                  },
+                                  [_vm._v("Start time")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  [
+                                    _c("date-picker", {
+                                      attrs: {
+                                        type: "datetime",
+                                        "time-picker-options": {
+                                          start: "08:30",
+                                          step: "00:30",
+                                          end: "18:30"
+                                        },
+                                        format: "hh:mm a"
+                                      },
+                                      model: {
+                                        value: _vm.start_date,
+                                        callback: function($$v) {
+                                          _vm.start_date = $$v
+                                        },
+                                        expression: "start_date"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "mobile-table-label visible-xs"
+                                  },
+                                  [_vm._v("End time")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  [
+                                    _c("date-picker", {
+                                      attrs: {
+                                        type: "datetime",
+                                        "time-picker-options": {
+                                          start: "08:30",
+                                          step: "00:30",
+                                          end: "18:30"
+                                        },
+                                        format: "hh:mm a"
+                                      },
+                                      model: {
+                                        value: _vm.end_date,
+                                        callback: function($$v) {
+                                          _vm.end_date = $$v
+                                        },
+                                        expression: "end_date"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "mobile-table-label visible-xs"
+                                  },
+                                  [_vm._v("Description")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "textarea",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.text,
+                                        expression: "text"
+                                      }
+                                    ],
+                                    staticClass: "form-control input-sm",
+                                    staticStyle: {
+                                      overflow: "hidden",
+                                      "overflow-wrap": "break-word",
+                                      resize: "horizontal",
+                                      height: "48px"
+                                    },
                                     attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      width: "14",
-                                      height: "14",
-                                      viewBox: "0 0 24 24"
+                                      placeholder: "Describe the event",
+                                      cols: "40",
+                                      rows: "1",
+                                      name: "text"
+                                    },
+                                    domProps: { value: _vm.text },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.text = $event.target.value
+                                      }
                                     }
                                   },
                                   [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M4.765 20.467l-1.328 2.443s-1.649.425-2.682 1.09l-.258-.257 1.237-1.237c.108-.109.249-.178.401-.196.084-.011.166-.048.23-.113.155-.155.155-.407 0-.562s-.407-.155-.562 0c-.065.065-.103.146-.113.23-.019.152-.088.293-.196.402l-1.237 1.237-.257-.258c.672-1.044 1.09-2.682 1.09-2.682l2.443-1.329 1.232 1.232zm18.923-18.3c.209-.246.312-.549.312-.851 0-.726-.589-1.316-1.316-1.316-.302 0-.604.103-.851.312 0 0-12.252 9.474-14.236 11.458-1.383 1.383-1.677 2.673-3.49 6.327l1.795 1.796c3.425-1.699 4.857-2.021 6.327-3.49 1.982-1.979 11.459-14.236 11.459-14.236z"
-                                      }
-                                    })
+                                    _vm._v(
+                                      "                                    " +
+                                        _vm._s(item.text) +
+                                        "\n                                "
+                                    )
                                   ]
                                 )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("button", { staticClass: "btn" }, [
-                              _c(
-                                "svg",
-                                {
-                                  staticStyle: { fill: "#000000" },
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    x: "0px",
-                                    y: "0px",
-                                    width: "14",
-                                    height: "14",
-                                    viewBox: "0 0 24 24"
-                                  }
-                                },
-                                [
-                                  _c("path", {
-                                    attrs: {
-                                      d:
-                                        "M 10 2 L 9 3 L 3 3 L 3 5 L 21 5 L 21 3 L 15 3 L 14 2 L 10 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z"
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "mobile-table-label visible-xs"
+                                  },
+                                  [_vm._v("Assigned to")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.assigned,
+                                        expression: "assigned"
+                                      }
+                                    ],
+                                    staticClass: "form-control input-sm",
+                                    attrs: { name: "type" },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.assigned = $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      }
                                     }
-                                  })
-                                ]
-                              )
+                                  },
+                                  _vm._l(_vm.urldatauser, function(url) {
+                                    return _c(
+                                      "option",
+                                      { domProps: { value: url.id } },
+                                      [_vm._v(_vm._s(url.name))]
+                                    )
+                                  }),
+                                  0
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { attrs: { colspan: "2" } }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "mobile-table-label visible-xs"
+                                  },
+                                  [_vm._v("Task Type")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "assign-employee-list" },
+                                  [
+                                    _c("ul", { staticClass: "list-unstyled" }, [
+                                      _c("li", [
+                                        _c(
+                                          "div",
+                                          { staticClass: "custom-select-form" },
+                                          [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.status,
+                                                    expression: "status"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-control input-sm select-technician",
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.status = $event.target
+                                                      .multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
+                                                  }
+                                                }
+                                              },
+                                              _vm._l(
+                                                _vm.urldataeventtype,
+                                                function(url) {
+                                                  return _c(
+                                                    "option",
+                                                    {
+                                                      domProps: {
+                                                        value: url.id
+                                                      }
+                                                    },
+                                                    [_vm._v(_vm._s(url.name))]
+                                                  )
+                                                }
+                                              ),
+                                              0
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ])
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("tr", [
+                                _c(
+                                  "td",
+                                  {
+                                    staticClass: "no-border",
+                                    attrs: { colspan: "4" }
+                                  },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-dark",
+                                        attrs: { type: "button" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.labelEdit(item.id)
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Save")]
+                                    )
+                                  ]
+                                )
+                              ])
                             ])
-                          ])
-                        ])
+                          : _vm._e()
                       ]
                     )
-                  }),
-                  0
+                  ]
                 )
-              ])
-            ])
-          ]
-        )
+              }),
+              0
+            )
+          ])
+        ])
       ])
     ])
   ])

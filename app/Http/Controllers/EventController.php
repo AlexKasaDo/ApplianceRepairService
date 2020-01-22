@@ -51,13 +51,11 @@ class EventController extends Controller
         $event->save();
         $event->staff()->sync($request->assigned, true);
 
-        return response()->json([
-            "action"=> "inserted",
-            "tid" => $event->id
-        ]);
+        return response()->json(Event::with('job')->where('job_id',$event->job_id )->get(),200);
     }
 
     public function update($id, Request $request){
+
         $event = Event::find($id);
 
         $event->text = strip_tags($request->text);
@@ -76,8 +74,6 @@ class EventController extends Controller
         $event = Event::find($id);
         $event->staff()->sync([]);
         $event->delete();
-
-
 
 
 
