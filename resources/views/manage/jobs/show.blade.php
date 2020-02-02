@@ -43,34 +43,11 @@
                 </ul>
             </div>
         </div>
-        <div class="card mb-3">
-            <div class="card-header ">
-                <div class="row">
-                    <div class="text-left col-6">
-                        <b>Schedule</b>
-                    </div>
-                </div>
 
-            </div>
-            <div class="card-body "><!--card-body  START-->
+                        <!-- START EVENT AND DATE Picker START -->
+                            <data-form :urldatauser="{{json_encode($user)}}" :urldataeventtype="{{json_encode($eventType)}}"  id="{{$job->id}}"></data-form>
+                        <!--  EVENT AND DATE Picker END -->
 
-                <div class="new-task-click-toggle">
-                    <form class="task_form record first"
-                          accept-charset="UTF-8" data-remote="true" method="post">
-                    @csrf
-
-                    <!-- DATE Picker START -->
-                        <data-form :urldatauser="{{json_encode($user)}}"
-                                   :urldataeventtype="{{json_encode($eventType)}}"></data-form>
-                        <!-- DATE Picker END -->
-
-                    </form>
-                </div>
-
-
-            </div>
-            <!-------------------------------------------------card-body  END ----------------------------------------->
-        </div>
 
         <div id="attachmentsJobs">
             <note-component token="{{csrf_token()}}" id="{{$job->id}}"></note-component>

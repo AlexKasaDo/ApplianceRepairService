@@ -90,13 +90,17 @@ class JobsController extends Controller
 
         $job = Job::find($id);
 
+        $event = Job::find($id)->Event;
+
+
+
         $user = Role::where('name',
                             '=',
                             'staff')->first()->users;
 
-
         return \view('manage.jobs.show',
                      ['job' => $job])
+            ->withEvent($event)
             ->withEventType($eventType)
             ->withUser($user);
     }
@@ -201,6 +205,7 @@ class JobsController extends Controller
 
         $eventType = EventType::All();
 
+//        $events = Event();
 
         $events = Event::with('staff')->get();
 

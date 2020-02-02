@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ['start_date', 'end_date', 'text', 'status_id','type_id'];
+    protected $fillable = ['start_date', 'end_date', 'text', 'status_id','type_id','job_id'];
+
+    public function job ()
+    {
+        return $this->belongsTo(Job::class);
+    }
 
     public function type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

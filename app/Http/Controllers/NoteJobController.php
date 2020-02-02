@@ -43,7 +43,6 @@ class NoteJobController extends Controller
                                     $jobID,
                                     'remove',
                                     'note')->save();
-
             return response()->json(true,
                                     200);
         } else {
