@@ -147,7 +147,7 @@
 
                             </div>
                             <template v-if="editable === item.id">
-                                <form @submit.prevent="labelEdit" class="form-group">
+                                <form @submit.prevent="labelEdit(item.id)" class="form-group">
                                     <div class="row">
 
 
@@ -226,7 +226,7 @@
                                         </td>
                                         <td>
                                             <div class="mobile-table-label visible-xs">Description</div>
-                                            <textarea class="form-control input-sm" v-model="item.text"
+                                            <textarea class="form-control input-sm" v-model="text_edit = item.text"
                                                       placeholder="Describe the event" cols="40" rows="1" name="text"
                                                       style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 48px;">
 
@@ -272,6 +272,9 @@
                                                 <button type="button" class="btn btn-dark" @click="labelEdit(item.id)">
                                                     Save
                                                 </button>
+                                                <button type="button" class="btn btn-s" @click="editable = null">
+                                                    Cancel
+                                                </button>
                                             </td>
                                         </tr>
                                     </div>
@@ -309,6 +312,7 @@
                 seen: false,
                 editable: null,
                 text: null,
+                text_edit: null,
                 start_date: null,
                 start_date_edit: null,
                 end_date: null,
@@ -352,17 +356,17 @@
 
             labelEdit(id) {
 
-                axios.post('/api/events/' + id, {
-                    start_date: this.start_date,
-                    end_date: this.end_date,
-                    text: this.text,
-                    type_id: this.status,
-                    assigned: this.assigned,
+                axios.put('/api/events/' + id, {
+                    start_date: this.start_date_edit,
+                    end_date: this.end_date_edit,
+                    text: this.text_edit,
+                    type_id: this.status_edit,
+                    assigned: this.assigned_edit,
                     job_id: this.id,
 
                 }).then(response => {
-                    this.data = response.data;
                     this.editable = null;
+
                 }).catch(error => console.log(error));
 
             },
