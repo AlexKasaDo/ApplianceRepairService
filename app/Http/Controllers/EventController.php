@@ -12,7 +12,7 @@ class EventController extends Controller
     public function show(int $id)
     {
 
-        return response()->json(Event::with('job')->where('job_id',$id)->get(),200);
+        return response()->json(Event::with('staff')->where('job_id',$id)->get(),200);
     }
 
     public function index(Request $request){
@@ -51,7 +51,7 @@ class EventController extends Controller
         $event->save();
         $event->staff()->sync($request->assigned, true);
 
-        return response()->json(Event::with('job')->where('job_id',$event->job_id )->get(),200);
+        return response()->json(Event::with('staff')->where('job_id',$event->job_id )->get(),200);
     }
 
     public function update($id, Request $request){
@@ -59,15 +59,13 @@ class EventController extends Controller
         $event = Event::find($id);
 
         $event->text = strip_tags($request->text);
-        $event->start_date = $request->start_date;
-        $event->end_date = $request->end_date;
+        $event->start_date = date("Y-m-d H:i:s",strtotime($request->start_date));
+        $event->end_date = date("Y-m-d H:i:s",strtotime( $request->end_date));
         $event->type_id = strip_tags($request->type_id);
         $event->save();
         $event->staff()->sync($request->assigned, true);
 
-        return response()->json([
-            "action"=> "updated"
-        ]);
+        return response()->json(true);
     }
 
     public function destroy($id){
