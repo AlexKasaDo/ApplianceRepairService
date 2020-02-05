@@ -205,7 +205,6 @@ class JobsController extends Controller
 
         $eventType = EventType::All();
 
-//        $events = Event();
 
         $events = Event::with('staff')->get();
 
@@ -243,7 +242,8 @@ class JobsController extends Controller
         $eventType = EventType::All();
 
 
-        $events = Event::with('staff')->get();
+    $events = Event::with('staff')->get() ;
+
 
         function base ($events){
             $items = array();
@@ -285,7 +285,6 @@ class JobsController extends Controller
 
             return $items;
         }
-
 
 
 

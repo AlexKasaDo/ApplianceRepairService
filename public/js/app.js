@@ -2519,6 +2519,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2530,13 +2589,20 @@ __webpack_require__.r(__webpack_exports__);
     return {
       data: [],
       seen: false,
-      editable: false,
+      editable: null,
       text: null,
+      text_edit: null,
       start_date: null,
+      start_date_edit: null,
       end_date: null,
+      end_date_edit: null,
       status: null,
+      status_edit: null,
       assigned: null,
-      job_id: null
+      assigned_edit: null,
+      job_id: null,
+      showTimePanel: false,
+      showTimeRangePanel: false
     };
   },
   mounted: function mounted() {
@@ -2547,8 +2613,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post('/api/events', {
-        start_date: this.start_date,
-        end_date: this.end_date,
+        start_date: this.start_date.getTime(),
+        end_date: this.end_date.getTime(),
         text: this.text,
         type_id: this.status,
         assigned: this.assigned,
@@ -2583,19 +2649,23 @@ __webpack_require__.r(__webpack_exports__);
     labelEdit: function labelEdit(id) {
       var _this3 = this;
 
-      axios.post('/api/events/' + id, {
-        start_date: this.start_date,
-        end_date: this.end_date,
-        text: this.text,
-        type_id: this.status,
-        assigned: this.assigned,
+      axios.put('/api/events/' + id, {
+        start_date: this.start_date_edit,
+        end_date: this.end_date_edit,
+        text: this.text_edit,
+        type_id: this.status_edit,
+        assigned: this.assigned_edit,
         job_id: this.id
       }).then(function (response) {
-        _this3.data = response.data;
-        _this3.editable = false;
+        _this3.editable = null;
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    ebitMy: function ebitMy(id, start, end) {
+      this.editable = id;
+      this.start_date_edit = new Date(start);
+      this.end_date_edit = new Date(end);
     },
     removeEvent: function removeEvent(id, index) {
       var _this4 = this;
@@ -2605,6 +2675,18 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    toggleTimePanel: function toggleTimePanel() {
+      this.showTimePanel = !this.showTimePanel;
+    },
+    toggleTimeRangePanel: function toggleTimeRangePanel() {
+      this.showTimeRangePanel = !this.showTimeRangePanel;
+    },
+    handleOpenChange: function handleOpenChange() {
+      this.showTimePanel = false;
+    },
+    handleRangeClose: function handleRangeClose() {
+      this.showTimeRangePanel = false;
     }
   }
 });
@@ -2689,7 +2771,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
-//
 //
 //
 //
@@ -58051,211 +58132,229 @@ var render = function() {
                   },
                   [
                     _c("tbody", [
-                      _c("td", [
-                        _c(
-                          "div",
-                          { staticClass: "mobile-table-label visible-xs" },
-                          [_vm._v("Start time")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          [
-                            _c("date-picker", {
-                              attrs: {
-                                type: "datetime",
-                                "time-picker-options": {
-                                  start: "08:30",
-                                  step: "00:30",
-                                  end: "18:30"
+                      _c("tr", [
+                        _c("td", [
+                          _c(
+                            "div",
+                            { staticClass: "mobile-table-label visible-xs" },
+                            [_vm._v("Start time")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            [
+                              _c("date-picker", {
+                                attrs: {
+                                  type: "datetime",
+                                  "time-picker-options": {
+                                    start: "08:30",
+                                    step: "00:30",
+                                    end: "18:30"
+                                  },
+                                  format: "hh:mm a"
                                 },
-                                format: "hh:mm a"
-                              },
-                              model: {
-                                value: _vm.start_date,
-                                callback: function($$v) {
-                                  _vm.start_date = $$v
-                                },
-                                expression: "start_date"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "div",
-                          { staticClass: "mobile-table-label visible-xs" },
-                          [_vm._v("End time")]
-                        ),
+                                model: {
+                                  value: _vm.start_date,
+                                  callback: function($$v) {
+                                    _vm.start_date = $$v
+                                  },
+                                  expression: "start_date"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          [
-                            _c("date-picker", {
-                              attrs: {
-                                type: "datetime",
-                                "time-picker-options": {
-                                  start: "08:30",
-                                  step: "00:30",
-                                  end: "18:30"
+                        _c("td", [
+                          _c(
+                            "div",
+                            { staticClass: "mobile-table-label visible-xs" },
+                            [_vm._v("End time")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            [
+                              _c("date-picker", {
+                                attrs: {
+                                  type: "datetime",
+                                  "time-picker-options": {
+                                    start: "08:30",
+                                    step: "00:30",
+                                    end: "18:30"
+                                  },
+                                  format: "hh:mm a"
                                 },
-                                format: "hh:mm a"
-                              },
-                              model: {
-                                value: _vm.end_date,
-                                callback: function($$v) {
-                                  _vm.end_date = $$v
-                                },
-                                expression: "end_date"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "div",
-                          { staticClass: "mobile-table-label visible-xs" },
-                          [_vm._v("Description")]
-                        ),
+                                model: {
+                                  value: _vm.end_date,
+                                  callback: function($$v) {
+                                    _vm.end_date = $$v
+                                  },
+                                  expression: "end_date"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]),
                         _vm._v(" "),
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.text,
-                              expression: "text"
-                            }
-                          ],
-                          staticClass: "form-control input-sm",
-                          staticStyle: {
-                            overflow: "hidden",
-                            "overflow-wrap": "break-word",
-                            resize: "horizontal",
-                            height: "48px"
-                          },
-                          attrs: {
-                            placeholder: "Describe the event",
-                            cols: "40",
-                            rows: "1",
-                            name: "text"
-                          },
-                          domProps: { value: _vm.text },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.text = $event.target.value
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "div",
-                          { staticClass: "mobile-table-label visible-xs" },
-                          [_vm._v("Assigned to")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
+                        _c("td", [
+                          _c(
+                            "div",
+                            { staticClass: "mobile-table-label visible-xs" },
+                            [_vm._v("Description")]
+                          ),
+                          _vm._v(" "),
+                          _c("textarea", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.assigned,
-                                expression: "assigned"
+                                value: _vm.text,
+                                expression: "text"
                               }
                             ],
                             staticClass: "form-control input-sm",
-                            attrs: { name: "type" },
+                            staticStyle: {
+                              overflow: "hidden",
+                              "overflow-wrap": "break-word",
+                              resize: "horizontal",
+                              height: "48px"
+                            },
+                            attrs: {
+                              placeholder: "Describe the event",
+                              cols: "40",
+                              rows: "1",
+                              name: "text"
+                            },
+                            domProps: { value: _vm.text },
                             on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.assigned = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.text = $event.target.value
                               }
                             }
-                          },
-                          _vm._l(_vm.urldatauser, function(url) {
-                            return _c(
-                              "option",
-                              { domProps: { value: url.id } },
-                              [_vm._v(_vm._s(url.name))]
-                            )
-                          }),
-                          0
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { attrs: { colspan: "2" } }, [
-                        _c(
-                          "div",
-                          { staticClass: "mobile-table-label visible-xs" },
-                          [_vm._v("Task Type")]
-                        ),
+                          })
+                        ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "assign-employee-list" }, [
-                          _c("ul", { staticClass: "list-unstyled" }, [
-                            _c("li", [
-                              _c("div", { staticClass: "custom-select-form" }, [
+                        _c("td", [
+                          _c(
+                            "div",
+                            { staticClass: "mobile-table-label visible-xs" },
+                            [_vm._v("Assigned to")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.assigned,
+                                  expression: "assigned"
+                                }
+                              ],
+                              staticClass: "form-control input-sm",
+                              attrs: { name: "type" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.assigned = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            _vm._l(_vm.urldatauser, function(url) {
+                              return _c(
+                                "option",
+                                { domProps: { value: url.id } },
+                                [_vm._v(_vm._s(url.name))]
+                              )
+                            }),
+                            0
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { attrs: { colspan: "2" } }, [
+                          _c(
+                            "div",
+                            { staticClass: "mobile-table-label visible-xs" },
+                            [_vm._v("Task Type")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "assign-employee-list" }, [
+                            _c("ul", { staticClass: "list-unstyled" }, [
+                              _c("li", [
                                 _c(
-                                  "select",
-                                  {
-                                    directives: [
+                                  "div",
+                                  { staticClass: "custom-select-form" },
+                                  [
+                                    _c(
+                                      "select",
                                       {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.status,
-                                        expression: "status"
-                                      }
-                                    ],
-                                    staticClass:
-                                      "form-control input-sm select-technician",
-                                    on: {
-                                      change: function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.status = $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      }
-                                    }
-                                  },
-                                  _vm._l(_vm.urldataeventtype, function(url) {
-                                    return _c(
-                                      "option",
-                                      { domProps: { value: url.id } },
-                                      [_vm._v(_vm._s(url.name))]
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.status,
+                                            expression: "status"
+                                          }
+                                        ],
+                                        staticClass:
+                                          "form-control input-sm select-technician",
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.status = $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          }
+                                        }
+                                      },
+                                      _vm._l(_vm.urldataeventtype, function(
+                                        url
+                                      ) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: url.id } },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    " +
+                                                _vm._s(url.name) +
+                                                "\n                                                "
+                                            )
+                                          ]
+                                        )
+                                      }),
+                                      0
                                     )
-                                  }),
-                                  0
+                                  ]
                                 )
                               ])
                             ])
@@ -58290,7 +58389,7 @@ var render = function() {
                         _vm._m(2, true),
                         _vm._v(" "),
                         _c("p", { staticClass: "text" }, [
-                          _vm._v(" " + _vm._s(item.id) + "  ")
+                          _vm._v(" " + _vm._s(item.id) + " ")
                         ])
                       ]),
                       _vm._v(" "),
@@ -58312,11 +58411,30 @@ var render = function() {
                         _vm._m(4, true),
                         _vm._v(" "),
                         _c("p", { staticClass: "text" }, [
-                          _vm._v(" " + _vm._s(item.text) + "  ")
+                          _vm._v(" " + _vm._s(item.text) + " ")
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(5, true),
+                      _c(
+                        "div",
+                        { staticClass: "text-left col-2" },
+                        [
+                          _vm._m(5, true),
+                          _vm._v(" "),
+                          _vm._l(item.staff, function(staff) {
+                            return [
+                              _c("p", { staticClass: "text" }, [
+                                _vm._v(
+                                  _vm._s(staff.name) +
+                                    " " +
+                                    _vm._s(staff.username)
+                                )
+                              ])
+                            ]
+                          })
+                        ],
+                        2
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "text-right col-2" }, [
                         _c(
@@ -58326,7 +58444,11 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                _vm.editable = item.id
+                                return _vm.ebitMy(
+                                  item.id,
+                                  item.start_date,
+                                  item.end_date
+                                )
                               }
                             }
                           },
@@ -58392,108 +58514,196 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "form",
-                      {
-                        staticClass: "form-group",
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.labelEdit($event)
-                          }
-                        }
-                      },
-                      [
-                        _vm.editable == item.id
-                          ? _c("div", { staticClass: "row" }, [
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "mobile-table-label visible-xs"
-                                  },
-                                  [_vm._v("Start time")]
-                                ),
+                    _vm.editable === item.id
+                      ? [
+                          _c(
+                            "form",
+                            {
+                              staticClass: "form-group",
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.labelEdit(item.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "row" }, [
+                                _c("td", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "mobile-table-label visible-xs"
+                                    },
+                                    [_vm._v("Start time")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c("div", { staticClass: "box" }, [
+                                      _c(
+                                        "section",
+                                        [
+                                          _c("date-picker", {
+                                            attrs: {
+                                              type: "datetime",
+                                              "show-time-panel":
+                                                _vm.showTimePanel,
+                                              "time-picker-options": {
+                                                start: "08:30",
+                                                step: "00:30",
+                                                end: "18:30"
+                                              },
+                                              format: "YYYY-MM-DD hh:mm:ss A"
+                                            },
+                                            on: { close: _vm.handleOpenChange },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "footer",
+                                                  fn: function() {
+                                                    return [
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "mx-btn mx-btn-text",
+                                                          on: {
+                                                            click:
+                                                              _vm.toggleTimePanel
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                                                " +
+                                                              _vm._s(
+                                                                _vm.showTimePanel
+                                                                  ? "select date"
+                                                                  : "select time"
+                                                              ) +
+                                                              "\n                                                            "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  },
+                                                  proxy: true
+                                                }
+                                              ],
+                                              null,
+                                              true
+                                            ),
+                                            model: {
+                                              value: _vm.start_date_edit,
+                                              callback: function($$v) {
+                                                _vm.start_date_edit = $$v
+                                              },
+                                              expression: "start_date_edit"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ])
+                                  ])
+                                ]),
                                 _vm._v(" "),
-                                _c(
-                                  "div",
-                                  [
-                                    _c("date-picker", {
-                                      attrs: {
-                                        type: "datetime",
-                                        "time-picker-options": {
-                                          start: "08:30",
-                                          step: "00:30",
-                                          end: "18:30"
-                                        },
-                                        format: "hh:mm a"
-                                      },
-                                      model: {
-                                        value: _vm.start_date,
-                                        callback: function($$v) {
-                                          _vm.start_date = $$v
-                                        },
-                                        expression: "start_date"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "mobile-table-label visible-xs"
-                                  },
-                                  [_vm._v("End time")]
-                                ),
+                                _c("td", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "mobile-table-label visible-xs"
+                                    },
+                                    [_vm._v("End time")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", [
+                                    _c("div", { staticClass: "box" }, [
+                                      _c(
+                                        "section",
+                                        [
+                                          _c("date-picker", {
+                                            attrs: {
+                                              type: "datetime",
+                                              "show-time-panel":
+                                                _vm.showTimePanel,
+                                              "time-picker-options": {
+                                                start: "08:30",
+                                                step: "00:30",
+                                                end: "18:30"
+                                              },
+                                              format: "YYYY-MM-DD hh:mm:ss A"
+                                            },
+                                            on: { close: _vm.handleOpenChange },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "footer",
+                                                  fn: function() {
+                                                    return [
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          staticClass:
+                                                            "mx-btn mx-btn-text",
+                                                          on: {
+                                                            click:
+                                                              _vm.toggleTimePanel
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                                                                " +
+                                                              _vm._s(
+                                                                _vm.showTimePanel
+                                                                  ? "select date"
+                                                                  : "select time"
+                                                              ) +
+                                                              "\n                                                            "
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  },
+                                                  proxy: true
+                                                }
+                                              ],
+                                              null,
+                                              true
+                                            ),
+                                            model: {
+                                              value: _vm.end_date_edit,
+                                              callback: function($$v) {
+                                                _vm.end_date_edit = $$v
+                                              },
+                                              expression: "end_date_edit"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ])
+                                  ])
+                                ]),
                                 _vm._v(" "),
-                                _c(
-                                  "div",
-                                  [
-                                    _c("date-picker", {
-                                      attrs: {
-                                        type: "datetime",
-                                        "time-picker-options": {
-                                          start: "08:30",
-                                          step: "00:30",
-                                          end: "18:30"
-                                        },
-                                        format: "hh:mm a"
-                                      },
-                                      model: {
-                                        value: _vm.end_date,
-                                        callback: function($$v) {
-                                          _vm.end_date = $$v
-                                        },
-                                        expression: "end_date"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "mobile-table-label visible-xs"
-                                  },
-                                  [_vm._v("Description")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "textarea",
-                                  {
+                                _c("td", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "mobile-table-label visible-xs"
+                                    },
+                                    [_vm._v("Description")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("textarea", {
                                     directives: [
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.text,
-                                        expression: "text"
+                                        value: (_vm.text_edit = item.text),
+                                        expression: "text_edit = item.text"
                                       }
                                     ],
                                     staticClass: "form-control input-sm",
@@ -58509,186 +58719,253 @@ var render = function() {
                                       rows: "1",
                                       name: "text"
                                     },
-                                    domProps: { value: _vm.text },
+                                    domProps: {
+                                      value: (_vm.text_edit = item.text)
+                                    },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
                                           return
                                         }
-                                        _vm.text = $event.target.value
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "                                    " +
-                                        _vm._s(item.text) +
-                                        "\n                                "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "mobile-table-label visible-xs"
-                                  },
-                                  [_vm._v("Assigned to")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.assigned,
-                                        expression: "assigned"
-                                      }
-                                    ],
-                                    staticClass: "form-control input-sm",
-                                    attrs: { name: "type" },
-                                    on: {
-                                      change: function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.assigned = $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      }
-                                    }
-                                  },
-                                  _vm._l(_vm.urldatauser, function(url) {
-                                    return _c(
-                                      "option",
-                                      { domProps: { value: url.id } },
-                                      [_vm._v(_vm._s(url.name))]
-                                    )
-                                  }),
-                                  0
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { attrs: { colspan: "2" } }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "mobile-table-label visible-xs"
-                                  },
-                                  [_vm._v("Task Type")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "assign-employee-list" },
-                                  [
-                                    _c("ul", { staticClass: "list-unstyled" }, [
-                                      _c("li", [
-                                        _c(
-                                          "div",
-                                          { staticClass: "custom-select-form" },
-                                          [
-                                            _c(
-                                              "select",
-                                              {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: _vm.status,
-                                                    expression: "status"
-                                                  }
-                                                ],
-                                                staticClass:
-                                                  "form-control input-sm select-technician",
-                                                on: {
-                                                  change: function($event) {
-                                                    var $$selectedVal = Array.prototype.filter
-                                                      .call(
-                                                        $event.target.options,
-                                                        function(o) {
-                                                          return o.selected
-                                                        }
-                                                      )
-                                                      .map(function(o) {
-                                                        var val =
-                                                          "_value" in o
-                                                            ? o._value
-                                                            : o.value
-                                                        return val
-                                                      })
-                                                    _vm.status = $event.target
-                                                      .multiple
-                                                      ? $$selectedVal
-                                                      : $$selectedVal[0]
-                                                  }
-                                                }
-                                              },
-                                              _vm._l(
-                                                _vm.urldataeventtype,
-                                                function(url) {
-                                                  return _c(
-                                                    "option",
-                                                    {
-                                                      domProps: {
-                                                        value: url.id
-                                                      }
-                                                    },
-                                                    [_vm._v(_vm._s(url.name))]
-                                                  )
-                                                }
-                                              ),
-                                              0
-                                            )
-                                          ]
+                                        _vm.$set(
+                                          (_vm.text_edit = item),
+                                          "text",
+                                          $event.target.value
                                         )
-                                      ])
-                                    ])
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("tr", [
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
                                 _c(
                                   "td",
-                                  {
-                                    staticClass: "no-border",
-                                    attrs: { colspan: "4" }
-                                  },
                                   [
                                     _c(
-                                      "button",
+                                      "div",
                                       {
-                                        staticClass: "btn btn-dark",
-                                        attrs: { type: "button" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.labelEdit(item.id)
-                                          }
-                                        }
+                                        staticClass:
+                                          "mobile-table-label visible-xs"
                                       },
-                                      [_vm._v("Save")]
-                                    )
-                                  ]
-                                )
+                                      [_vm._v("Assigned to")]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._l(item.staff, function(staff) {
+                                      return [
+                                        _c(
+                                          "select",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: (_vm.assigned_edit =
+                                                  staff.id),
+                                                expression:
+                                                  "assigned_edit = staff.id"
+                                              }
+                                            ],
+                                            staticClass:
+                                              "form-control input-sm",
+                                            attrs: { name: "type" },
+                                            on: {
+                                              change: function($event) {
+                                                var $$selectedVal = Array.prototype.filter
+                                                  .call(
+                                                    $event.target.options,
+                                                    function(o) {
+                                                      return o.selected
+                                                    }
+                                                  )
+                                                  .map(function(o) {
+                                                    var val =
+                                                      "_value" in o
+                                                        ? o._value
+                                                        : o.value
+                                                    return val
+                                                  })
+                                                _vm.$set(
+                                                  (_vm.assigned_edit = staff),
+                                                  "id",
+                                                  $event.target.multiple
+                                                    ? $$selectedVal
+                                                    : $$selectedVal[0]
+                                                )
+                                              }
+                                            }
+                                          },
+                                          _vm._l(_vm.urldatauser, function(
+                                            url
+                                          ) {
+                                            return _c(
+                                              "option",
+                                              { domProps: { value: url.id } },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(url.name) +
+                                                    "\n                                            "
+                                                )
+                                              ]
+                                            )
+                                          }),
+                                          0
+                                        )
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c("td", { attrs: { colspan: "2" } }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "mobile-table-label visible-xs"
+                                    },
+                                    [_vm._v("Task Type")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "assign-employee-list" },
+                                    [
+                                      _c(
+                                        "ul",
+                                        { staticClass: "list-unstyled" },
+                                        [
+                                          _c("li", [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "custom-select-form"
+                                              },
+                                              [
+                                                _c(
+                                                  "select",
+                                                  {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: (_vm.status_edit =
+                                                          item.type_id),
+                                                        expression:
+                                                          "status_edit = item.type_id "
+                                                      }
+                                                    ],
+                                                    staticClass:
+                                                      "form-control input-sm select-technician",
+                                                    on: {
+                                                      change: function($event) {
+                                                        var $$selectedVal = Array.prototype.filter
+                                                          .call(
+                                                            $event.target
+                                                              .options,
+                                                            function(o) {
+                                                              return o.selected
+                                                            }
+                                                          )
+                                                          .map(function(o) {
+                                                            var val =
+                                                              "_value" in o
+                                                                ? o._value
+                                                                : o.value
+                                                            return val
+                                                          })
+                                                        _vm.$set(
+                                                          (_vm.status_edit = item),
+                                                          "type_id",
+                                                          $event.target.multiple
+                                                            ? $$selectedVal
+                                                            : $$selectedVal[0]
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  _vm._l(
+                                                    _vm.urldataeventtype,
+                                                    function(url) {
+                                                      return _c(
+                                                        "option",
+                                                        {
+                                                          domProps: {
+                                                            value: url.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(url.name) +
+                                                              "\n                                                            "
+                                                          )
+                                                        ]
+                                                      )
+                                                    }
+                                                  ),
+                                                  0
+                                                )
+                                              ]
+                                            )
+                                          ])
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c(
+                                    "td",
+                                    {
+                                      staticClass: "no-border",
+                                      attrs: { colspan: "4" }
+                                    },
+                                    [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-dark",
+                                          attrs: { type: "button" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.labelEdit(item.id)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                Save\n                                            "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-s",
+                                          attrs: { type: "button" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.editable = null
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                Cancel\n                                            "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
                               ])
-                            ])
-                          : _vm._e()
-                      ]
-                    )
-                  ]
+                            ]
+                          )
+                        ]
+                      : _vm._e()
+                  ],
+                  2
                 )
               }),
               0
@@ -58743,11 +59020,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-left col-2" }, [
-      _c("p", { staticClass: "text" }, [_c("b", [_vm._v("Assigned To")])]),
-      _vm._v(" "),
-      _c("p", { staticClass: "text" })
-    ])
+    return _c("p", { staticClass: "text" }, [_c("b", [_vm._v("Assigned To")])])
   }
 ]
 render._withStripped = true

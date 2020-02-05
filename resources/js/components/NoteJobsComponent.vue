@@ -39,7 +39,6 @@
 
 
 
-
                         </div>
                         <div class="text-right col-3">
                             <button class="btn update-note"  type="button" @click="editable=item.id">

@@ -18,13 +18,65 @@ class EventController extends Controller
     public function index(Request $request){
 
         $events =  Event::with('staff');
+//        $events = Event::with('staff')->get() ;
+
+
+
+
         $from = $request->from;
         $to = $request->to;
+
+        function base ($events){
+            $items = array();
+            $count = 0;
+
+            foreach ($events  as $event=>$value) {
+
+
+                if ($value['staff']){
+
+                    foreach ($value['staff']  as $staffItem){
+
+                        $staffId = $staffItem['id'];
+                    }
+
+                }else {
+                    $staffId = 'unassigned';
+
+
+                }
+
+                $items[$count] = [
+                    "id" => $value['id'],
+                    "type_id" => $value['type_id'],
+                    "start_date" => $value['start_date'],
+                    "end_date" => $value['end_date'],
+                    "text" => $value['text'],
+                    "created_at" => $value['created_at'],
+                    "updated_at" => $value['updated_at'],
+                    "staff" => "$staffId",
+
+                ];
+
+
+                $count++;
+
+
+            }
+
+            return $items;
+        }
+
+
+
         return response()->json([
-            "data" => $events->
+            "data" =>  $events->
             where("start_date", "<", $to)->
             where("end_date", ">=", $from)->get()
         ]);
+
+
+
 
 
     }
@@ -40,6 +92,12 @@ class EventController extends Controller
             $request->type_id=2;
        };
 
+        if(isset($request->job_id)) {
+            $request->job_id;
+        }else{
+            $request->job_id=0;
+        };
+
 
 
         $event->start_date =  date("Y-m-d H:i:s",strtotime($request->start_date));
@@ -47,7 +105,6 @@ class EventController extends Controller
         $event->text = strip_tags($request->text);
         $event->type_id = strip_tags($request->type_id);
         $event->job_id = strip_tags($request->job_id);
-
         $event->save();
         $event->staff()->sync($request->assigned, true);
 
