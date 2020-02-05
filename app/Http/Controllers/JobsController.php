@@ -291,8 +291,6 @@ class JobsController extends Controller
 
 
 
-
-
         function getArr(){
 
             $events = Event::with('staff')->get();

@@ -17,10 +17,8 @@ class EventController extends Controller
 
     public function index(Request $request){
 
-        $events =  Event::with('staff');
-//        $events = Event::with('staff')->get() ;
-
-
+        //$events =  Event::with('staff');
+        $events = Event::with('staff')->get() ;
 
 
         $from = $request->from;
@@ -42,8 +40,6 @@ class EventController extends Controller
 
                 }else {
                     $staffId = 'unassigned';
-
-
                 }
 
                 $items[$count] = [
@@ -67,12 +63,10 @@ class EventController extends Controller
             return $items;
         }
 
-
+        $events =  base((object)$events);
 
         return response()->json([
-            "data" =>  $events->
-            where("start_date", "<", $to)->
-            where("end_date", ">=", $from)->get()
+            "data" =>  $events
         ]);
 
 

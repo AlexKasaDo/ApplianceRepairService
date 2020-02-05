@@ -3004,7 +3004,7 @@ __webpack_require__.r(__webpack_exports__);
       x_size: 24,
       x_start: 16,
       x_length: 48,
-      y_property: "type_id",
+      y_property: "staff",
       y_unit: staff,
       render: "bar",
       second_scale: {
